@@ -1,27 +1,50 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Lab 2</title>
-
+    <title>STATS 401 Labs</title>
+    
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-
 <body>
-
-    <h1>Lab 2</h1>
-
+    <nav class="lab-nav">
+        <a href="../index.html">Home</a>
+        <a href="../lab1/index.html">Lab 1</a>
+        <a href="../lab2/index.html">Lab 2</a>
+        <a href="../lab3/index.html">Lab 3</a>
+        <a href="../lab4/index.html">Lab 4</a>
+        <a href="../lab5/index.html">Lab 5</a>
+        <a href="../lab6/index.html">Lab 6</a>
+        <a href="../lab7/index.html">Lab 7</a>
+        <a href="../lab8/index.html">Lab 8</a>
+        <a href="../lab9/index.html">Lab 9</a>
+        <a href="../lab10/index.html">Lab 10</a>
+    </nav>
+    <h1>STATS 401: Data Acquisition and Visualization</h1>
+    <h3>Tobias Garcia</h3>
+    <h3>Net ID: tag41</h3>
+    <h2>Lab 2: Multivariate Visualization with D3</h2>
     <p>
-        Lab 2 will be added here.
+        This visualization explores the relationship among population, temperature, development level, and region in various cities.
     </p>
-
-    <a href="../index.html">
-        Back to home
-    </a>
-
+    <div id="chart"></div>
+    <h3>Design Justification</h3>
+    <p>
+        Population size is represented by the x-axis position, allowing viewers to easily compare cities from smaller to larger populations. 
+        Development level is mapped to the y-axis, using the categorical levels Low, Medium, and High visually correlating with their location on the y-axis to show how cities differ in development level. 
+        Temperature is represented by color, using a blue-to-red gradient where cooler temperatures appear blue and warmer temperatures appear red. This allows viewers to easily notice relationships between temperature and other variables.
+        Region is represented by the orientation of the triangle, with triangles pointing north, east, south, or west.
+    </p>
+    <p>
+        These mappings were chosen to make each variable visually distinct from each other and easier to interpret. I hope viewers can quickly identify relationships between temperature and development level and population size.
+    </p>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<!-- <script src="lab2practice.js"></script> -->
+<script src="lab2.js"></script>
 </body>
 
 </html>

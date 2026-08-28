@@ -42,3 +42,20 @@ p {
     background: #333;
     color: white;
 }
+
+.tooltip {
+    position: absolute;
+    pointer-events: none;
+    background: white;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 13px;
+    line-height: 1.5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.tooltip-title {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
