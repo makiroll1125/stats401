@@ -1,0 +1,1001 @@
+id,name,height,weight,types
+1,bulbasaur,7,69,"['grass', 'poison']"
+2,ivysaur,10,130,"['grass', 'poison']"
+3,venusaur,20,1000,"['grass', 'poison']"
+4,charmander,6,85,['fire']
+5,charmeleon,11,190,['fire']
+6,charizard,17,905,"['fire', 'flying']"
+7,squirtle,5,90,['water']
+8,wartortle,10,225,['water']
+9,blastoise,16,855,['water']
+10,caterpie,3,29,['bug']
+11,metapod,7,99,['bug']
+12,butterfree,11,320,"['bug', 'flying']"
+13,weedle,3,32,"['bug', 'poison']"
+14,kakuna,6,100,"['bug', 'poison']"
+15,beedrill,10,295,"['bug', 'poison']"
+16,pidgey,3,18,"['normal', 'flying']"
+17,pidgeotto,11,300,"['normal', 'flying']"
+18,pidgeot,15,395,"['normal', 'flying']"
+19,rattata,3,35,['normal']
+20,raticate,7,185,['normal']
+21,spearow,3,20,"['normal', 'flying']"
+22,fearow,12,380,"['normal', 'flying']"
+23,ekans,20,69,['poison']
+24,arbok,35,650,['poison']
+25,pikachu,4,60,['electric']
+26,raichu,8,300,['electric']
+27,sandshrew,6,120,['ground']
+28,sandslash,10,295,['ground']
+29,nidoran-f,4,70,['poison']
+30,nidorina,8,200,['poison']
+31,nidoqueen,13,600,"['poison', 'ground']"
+32,nidoran-m,5,90,['poison']
+33,nidorino,9,195,['poison']
+34,nidoking,14,620,"['poison', 'ground']"
+35,clefairy,6,75,['fairy']
+36,clefable,13,400,['fairy']
+37,vulpix,6,99,['fire']
+38,ninetales,11,199,['fire']
+39,jigglypuff,5,55,"['normal', 'fairy']"
+40,wigglytuff,10,120,"['normal', 'fairy']"
+41,zubat,8,75,"['poison', 'flying']"
+42,golbat,16,550,"['poison', 'flying']"
+43,oddish,5,54,"['grass', 'poison']"
+44,gloom,8,86,"['grass', 'poison']"
+45,vileplume,12,186,"['grass', 'poison']"
+46,paras,3,54,"['bug', 'grass']"
+47,parasect,10,295,"['bug', 'grass']"
+48,venonat,10,300,"['bug', 'poison']"
+49,venomoth,15,125,"['bug', 'poison']"
+50,diglett,2,8,['ground']
+51,dugtrio,7,333,['ground']
+52,meowth,4,42,['normal']
+53,persian,10,320,['normal']
+54,psyduck,8,196,['water']
+55,golduck,17,766,['water']
+56,mankey,5,280,['fighting']
+57,primeape,10,320,['fighting']
+58,growlithe,7,190,['fire']
+59,arcanine,19,1550,['fire']
+60,poliwag,6,124,['water']
+61,poliwhirl,10,200,['water']
+62,poliwrath,13,540,"['water', 'fighting']"
+63,abra,9,195,['psychic']
+64,kadabra,13,565,['psychic']
+65,alakazam,15,480,['psychic']
+66,machop,8,195,['fighting']
+67,machoke,15,705,['fighting']
+68,machamp,16,1300,['fighting']
+69,bellsprout,7,40,"['grass', 'poison']"
+70,weepinbell,10,64,"['grass', 'poison']"
+71,victreebel,17,155,"['grass', 'poison']"
+72,tentacool,9,455,"['water', 'poison']"
+73,tentacruel,16,550,"['water', 'poison']"
+74,geodude,4,200,"['rock', 'ground']"
+75,graveler,10,1050,"['rock', 'ground']"
+76,golem,14,3000,"['rock', 'ground']"
+77,ponyta,10,300,['fire']
+78,rapidash,17,950,['fire']
+79,slowpoke,12,360,"['water', 'psychic']"
+80,slowbro,16,785,"['water', 'psychic']"
+81,magnemite,3,60,"['electric', 'steel']"
+82,magneton,10,600,"['electric', 'steel']"
+83,farfetchd,8,150,"['normal', 'flying']"
+84,doduo,14,392,"['normal', 'flying']"
+85,dodrio,18,852,"['normal', 'flying']"
+86,seel,11,900,['water']
+87,dewgong,17,1200,"['water', 'ice']"
+88,grimer,9,300,['poison']
+89,muk,12,300,['poison']
+90,shellder,3,40,['water']
+91,cloyster,15,1325,"['water', 'ice']"
+92,gastly,13,1,"['ghost', 'poison']"
+93,haunter,16,1,"['ghost', 'poison']"
+94,gengar,15,405,"['ghost', 'poison']"
+95,onix,88,2100,"['rock', 'ground']"
+96,drowzee,10,324,['psychic']
+97,hypno,16,756,['psychic']
+98,krabby,4,65,['water']
+99,kingler,13,600,['water']
+100,voltorb,5,104,['electric']
+101,electrode,12,666,['electric']
+102,exeggcute,4,25,"['grass', 'psychic']"
+103,exeggutor,20,1200,"['grass', 'psychic']"
+104,cubone,4,65,['ground']
+105,marowak,10,450,['ground']
+106,hitmonlee,15,498,['fighting']
+107,hitmonchan,14,502,['fighting']
+108,lickitung,12,655,['normal']
+109,koffing,6,10,['poison']
+110,weezing,12,95,['poison']
+111,rhyhorn,10,1150,"['ground', 'rock']"
+112,rhydon,19,1200,"['ground', 'rock']"
+113,chansey,11,346,['normal']
+114,tangela,10,350,['grass']
+115,kangaskhan,22,800,['normal']
+116,horsea,4,80,['water']
+117,seadra,12,250,['water']
+118,goldeen,6,150,['water']
+119,seaking,13,390,['water']
+120,staryu,8,345,['water']
+121,starmie,11,800,"['water', 'psychic']"
+122,mr-mime,13,545,"['psychic', 'fairy']"
+123,scyther,15,560,"['bug', 'flying']"
+124,jynx,14,406,"['ice', 'psychic']"
+125,electabuzz,11,300,['electric']
+126,magmar,13,445,['fire']
+127,pinsir,15,550,['bug']
+128,tauros,14,884,['normal']
+129,magikarp,9,100,['water']
+130,gyarados,65,2350,"['water', 'flying']"
+131,lapras,25,2200,"['water', 'ice']"
+132,ditto,3,40,['normal']
+133,eevee,3,65,['normal']
+134,vaporeon,10,290,['water']
+135,jolteon,8,245,['electric']
+136,flareon,9,250,['fire']
+137,porygon,8,365,['normal']
+138,omanyte,4,75,"['rock', 'water']"
+139,omastar,10,350,"['rock', 'water']"
+140,kabuto,5,115,"['rock', 'water']"
+141,kabutops,13,405,"['rock', 'water']"
+142,aerodactyl,18,590,"['rock', 'flying']"
+143,snorlax,21,4600,['normal']
+144,articuno,17,554,"['ice', 'flying']"
+145,zapdos,16,526,"['electric', 'flying']"
+146,moltres,20,600,"['fire', 'flying']"
+147,dratini,18,33,['dragon']
+148,dragonair,40,165,['dragon']
+149,dragonite,22,2100,"['dragon', 'flying']"
+150,mewtwo,20,1220,['psychic']
+151,mew,4,40,['psychic']
+152,chikorita,9,64,['grass']
+153,bayleef,12,158,['grass']
+154,meganium,18,1005,['grass']
+155,cyndaquil,5,79,['fire']
+156,quilava,9,190,['fire']
+157,typhlosion,17,795,['fire']
+158,totodile,6,95,['water']
+159,croconaw,11,250,['water']
+160,feraligatr,23,888,['water']
+161,sentret,8,60,['normal']
+162,furret,18,325,['normal']
+163,hoothoot,7,212,"['normal', 'flying']"
+164,noctowl,16,408,"['normal', 'flying']"
+165,ledyba,10,108,"['bug', 'flying']"
+166,ledian,14,356,"['bug', 'flying']"
+167,spinarak,5,85,"['bug', 'poison']"
+168,ariados,11,335,"['bug', 'poison']"
+169,crobat,18,750,"['poison', 'flying']"
+170,chinchou,5,120,"['water', 'electric']"
+171,lanturn,12,225,"['water', 'electric']"
+172,pichu,3,20,['electric']
+173,cleffa,3,30,['fairy']
+174,igglybuff,3,10,"['normal', 'fairy']"
+175,togepi,3,15,['fairy']
+176,togetic,6,32,"['fairy', 'flying']"
+177,natu,2,20,"['psychic', 'flying']"
+178,xatu,15,150,"['psychic', 'flying']"
+179,mareep,6,78,['electric']
+180,flaaffy,8,133,['electric']
+181,ampharos,14,615,['electric']
+182,bellossom,4,58,['grass']
+183,marill,4,85,"['water', 'fairy']"
+184,azumarill,8,285,"['water', 'fairy']"
+185,sudowoodo,12,380,['rock']
+186,politoed,11,339,['water']
+187,hoppip,4,5,"['grass', 'flying']"
+188,skiploom,6,10,"['grass', 'flying']"
+189,jumpluff,8,30,"['grass', 'flying']"
+190,aipom,8,115,['normal']
+191,sunkern,3,18,['grass']
+192,sunflora,8,85,['grass']
+193,yanma,12,380,"['bug', 'flying']"
+194,wooper,4,85,"['water', 'ground']"
+195,quagsire,14,750,"['water', 'ground']"
+196,espeon,9,265,['psychic']
+197,umbreon,10,270,['dark']
+198,murkrow,5,21,"['dark', 'flying']"
+199,slowking,20,795,"['water', 'psychic']"
+200,misdreavus,7,10,['ghost']
+201,unown,5,50,['psychic']
+202,wobbuffet,13,285,['psychic']
+203,girafarig,15,415,"['normal', 'psychic']"
+204,pineco,6,72,['bug']
+205,forretress,12,1258,"['bug', 'steel']"
+206,dunsparce,15,140,['normal']
+207,gligar,11,648,"['ground', 'flying']"
+208,steelix,92,4000,"['steel', 'ground']"
+209,snubbull,6,78,['fairy']
+210,granbull,14,487,['fairy']
+211,qwilfish,5,39,"['water', 'poison']"
+212,scizor,18,1180,"['bug', 'steel']"
+213,shuckle,6,205,"['bug', 'rock']"
+214,heracross,15,540,"['bug', 'fighting']"
+215,sneasel,9,280,"['dark', 'ice']"
+216,teddiursa,6,88,['normal']
+217,ursaring,18,1258,['normal']
+218,slugma,7,350,['fire']
+219,magcargo,8,550,"['fire', 'rock']"
+220,swinub,4,65,"['ice', 'ground']"
+221,piloswine,11,558,"['ice', 'ground']"
+222,corsola,6,50,"['water', 'rock']"
+223,remoraid,6,120,['water']
+224,octillery,9,285,['water']
+225,delibird,9,160,"['ice', 'flying']"
+226,mantine,21,2200,"['water', 'flying']"
+227,skarmory,17,505,"['steel', 'flying']"
+228,houndour,6,108,"['dark', 'fire']"
+229,houndoom,14,350,"['dark', 'fire']"
+230,kingdra,18,1520,"['water', 'dragon']"
+231,phanpy,5,335,['ground']
+232,donphan,11,1200,['ground']
+233,porygon2,6,325,['normal']
+234,stantler,14,712,['normal']
+235,smeargle,12,580,['normal']
+236,tyrogue,7,210,['fighting']
+237,hitmontop,14,480,['fighting']
+238,smoochum,4,60,"['ice', 'psychic']"
+239,elekid,6,235,['electric']
+240,magby,7,214,['fire']
+241,miltank,12,755,['normal']
+242,blissey,15,468,['normal']
+243,raikou,19,1780,['electric']
+244,entei,21,1980,['fire']
+245,suicune,20,1870,['water']
+246,larvitar,6,720,"['rock', 'ground']"
+247,pupitar,12,1520,"['rock', 'ground']"
+248,tyranitar,20,2020,"['rock', 'dark']"
+249,lugia,52,2160,"['psychic', 'flying']"
+250,ho-oh,38,1990,"['fire', 'flying']"
+251,celebi,6,50,"['psychic', 'grass']"
+252,treecko,5,50,['grass']
+253,grovyle,9,216,['grass']
+254,sceptile,17,522,['grass']
+255,torchic,4,25,['fire']
+256,combusken,9,195,"['fire', 'fighting']"
+257,blaziken,19,520,"['fire', 'fighting']"
+258,mudkip,4,76,['water']
+259,marshtomp,7,280,"['water', 'ground']"
+260,swampert,15,819,"['water', 'ground']"
+261,poochyena,5,136,['dark']
+262,mightyena,10,370,['dark']
+263,zigzagoon,4,175,['normal']
+264,linoone,5,325,['normal']
+265,wurmple,3,36,['bug']
+266,silcoon,6,100,['bug']
+267,beautifly,10,284,"['bug', 'flying']"
+268,cascoon,7,115,['bug']
+269,dustox,12,316,"['bug', 'poison']"
+270,lotad,5,26,"['water', 'grass']"
+271,lombre,12,325,"['water', 'grass']"
+272,ludicolo,15,550,"['water', 'grass']"
+273,seedot,5,40,['grass']
+274,nuzleaf,10,280,"['grass', 'dark']"
+275,shiftry,13,596,"['grass', 'dark']"
+276,taillow,3,23,"['normal', 'flying']"
+277,swellow,7,198,"['normal', 'flying']"
+278,wingull,6,95,"['water', 'flying']"
+279,pelipper,12,280,"['water', 'flying']"
+280,ralts,4,66,"['psychic', 'fairy']"
+281,kirlia,8,202,"['psychic', 'fairy']"
+282,gardevoir,16,484,"['psychic', 'fairy']"
+283,surskit,5,17,"['bug', 'water']"
+284,masquerain,8,36,"['bug', 'flying']"
+285,shroomish,4,45,['grass']
+286,breloom,12,392,"['grass', 'fighting']"
+287,slakoth,8,240,['normal']
+288,vigoroth,14,465,['normal']
+289,slaking,20,1305,['normal']
+290,nincada,5,55,"['bug', 'ground']"
+291,ninjask,8,120,"['bug', 'flying']"
+292,shedinja,8,12,"['bug', 'ghost']"
+293,whismur,6,163,['normal']
+294,loudred,10,405,['normal']
+295,exploud,15,840,['normal']
+296,makuhita,10,864,['fighting']
+297,hariyama,23,2538,['fighting']
+298,azurill,2,20,"['normal', 'fairy']"
+299,nosepass,10,970,['rock']
+300,skitty,6,110,['normal']
+301,delcatty,11,326,['normal']
+302,sableye,5,110,"['dark', 'ghost']"
+303,mawile,6,115,"['steel', 'fairy']"
+304,aron,4,600,"['steel', 'rock']"
+305,lairon,9,1200,"['steel', 'rock']"
+306,aggron,21,3600,"['steel', 'rock']"
+307,meditite,6,112,"['fighting', 'psychic']"
+308,medicham,13,315,"['fighting', 'psychic']"
+309,electrike,6,152,['electric']
+310,manectric,15,402,['electric']
+311,plusle,4,42,['electric']
+312,minun,4,42,['electric']
+313,volbeat,7,177,['bug']
+314,illumise,6,177,['bug']
+315,roselia,3,20,"['grass', 'poison']"
+316,gulpin,4,103,['poison']
+317,swalot,17,800,['poison']
+318,carvanha,8,208,"['water', 'dark']"
+319,sharpedo,18,888,"['water', 'dark']"
+320,wailmer,20,1300,['water']
+321,wailord,145,3980,['water']
+322,numel,7,240,"['fire', 'ground']"
+323,camerupt,19,2200,"['fire', 'ground']"
+324,torkoal,5,804,['fire']
+325,spoink,7,306,['psychic']
+326,grumpig,9,715,['psychic']
+327,spinda,11,50,['normal']
+328,trapinch,7,150,['ground']
+329,vibrava,11,153,"['ground', 'dragon']"
+330,flygon,20,820,"['ground', 'dragon']"
+331,cacnea,4,513,['grass']
+332,cacturne,13,774,"['grass', 'dark']"
+333,swablu,4,12,"['normal', 'flying']"
+334,altaria,11,206,"['dragon', 'flying']"
+335,zangoose,13,403,['normal']
+336,seviper,27,525,['poison']
+337,lunatone,10,1680,"['rock', 'psychic']"
+338,solrock,12,1540,"['rock', 'psychic']"
+339,barboach,4,19,"['water', 'ground']"
+340,whiscash,9,236,"['water', 'ground']"
+341,corphish,6,115,['water']
+342,crawdaunt,11,328,"['water', 'dark']"
+343,baltoy,5,215,"['ground', 'psychic']"
+344,claydol,15,1080,"['ground', 'psychic']"
+345,lileep,10,238,"['rock', 'grass']"
+346,cradily,15,604,"['rock', 'grass']"
+347,anorith,7,125,"['rock', 'bug']"
+348,armaldo,15,682,"['rock', 'bug']"
+349,feebas,6,74,['water']
+350,milotic,62,1620,['water']
+351,castform,3,8,['normal']
+352,kecleon,10,220,['normal']
+353,shuppet,6,23,['ghost']
+354,banette,11,125,['ghost']
+355,duskull,8,150,['ghost']
+356,dusclops,16,306,['ghost']
+357,tropius,20,1000,"['grass', 'flying']"
+358,chimecho,6,10,['psychic']
+359,absol,12,470,['dark']
+360,wynaut,6,140,['psychic']
+361,snorunt,7,168,['ice']
+362,glalie,15,2565,['ice']
+363,spheal,8,395,"['ice', 'water']"
+364,sealeo,11,876,"['ice', 'water']"
+365,walrein,14,1506,"['ice', 'water']"
+366,clamperl,4,525,['water']
+367,huntail,17,270,['water']
+368,gorebyss,18,226,['water']
+369,relicanth,10,234,"['water', 'rock']"
+370,luvdisc,6,87,['water']
+371,bagon,6,421,['dragon']
+372,shelgon,11,1105,['dragon']
+373,salamence,15,1026,"['dragon', 'flying']"
+374,beldum,6,952,"['steel', 'psychic']"
+375,metang,12,2025,"['steel', 'psychic']"
+376,metagross,16,5500,"['steel', 'psychic']"
+377,regirock,17,2300,['rock']
+378,regice,18,1750,['ice']
+379,registeel,19,2050,['steel']
+380,latias,14,400,"['dragon', 'psychic']"
+381,latios,20,600,"['dragon', 'psychic']"
+382,kyogre,45,3520,['water']
+383,groudon,35,9500,['ground']
+384,rayquaza,70,2065,"['dragon', 'flying']"
+385,jirachi,3,11,"['steel', 'psychic']"
+386,deoxys-normal,17,608,['psychic']
+387,turtwig,4,102,['grass']
+388,grotle,11,970,['grass']
+389,torterra,22,3100,"['grass', 'ground']"
+390,chimchar,5,62,['fire']
+391,monferno,9,220,"['fire', 'fighting']"
+392,infernape,12,550,"['fire', 'fighting']"
+393,piplup,4,52,['water']
+394,prinplup,8,230,['water']
+395,empoleon,17,845,"['water', 'steel']"
+396,starly,3,20,"['normal', 'flying']"
+397,staravia,6,155,"['normal', 'flying']"
+398,staraptor,12,249,"['normal', 'flying']"
+399,bidoof,5,200,['normal']
+400,bibarel,10,315,"['normal', 'water']"
+401,kricketot,3,22,['bug']
+402,kricketune,10,255,['bug']
+403,shinx,5,95,['electric']
+404,luxio,9,305,['electric']
+405,luxray,14,420,['electric']
+406,budew,2,12,"['grass', 'poison']"
+407,roserade,9,145,"['grass', 'poison']"
+408,cranidos,9,315,['rock']
+409,rampardos,16,1025,['rock']
+410,shieldon,5,570,"['rock', 'steel']"
+411,bastiodon,13,1495,"['rock', 'steel']"
+412,burmy,2,34,['bug']
+413,wormadam-plant,5,65,"['bug', 'grass']"
+414,mothim,9,233,"['bug', 'flying']"
+415,combee,3,55,"['bug', 'flying']"
+416,vespiquen,12,385,"['bug', 'flying']"
+417,pachirisu,4,39,['electric']
+418,buizel,7,295,['water']
+419,floatzel,11,335,['water']
+420,cherubi,4,33,['grass']
+421,cherrim,5,93,['grass']
+422,shellos,3,63,['water']
+423,gastrodon,9,299,"['water', 'ground']"
+424,ambipom,12,203,['normal']
+425,drifloon,4,12,"['ghost', 'flying']"
+426,drifblim,12,150,"['ghost', 'flying']"
+427,buneary,4,55,['normal']
+428,lopunny,12,333,['normal']
+429,mismagius,9,44,['ghost']
+430,honchkrow,9,273,"['dark', 'flying']"
+431,glameow,5,39,['normal']
+432,purugly,10,438,['normal']
+433,chingling,2,6,['psychic']
+434,stunky,4,192,"['poison', 'dark']"
+435,skuntank,10,380,"['poison', 'dark']"
+436,bronzor,5,605,"['steel', 'psychic']"
+437,bronzong,13,1870,"['steel', 'psychic']"
+438,bonsly,5,150,['rock']
+439,mime-jr,6,130,"['psychic', 'fairy']"
+440,happiny,6,244,['normal']
+441,chatot,5,19,"['normal', 'flying']"
+442,spiritomb,10,1080,"['ghost', 'dark']"
+443,gible,7,205,"['dragon', 'ground']"
+444,gabite,14,560,"['dragon', 'ground']"
+445,garchomp,19,950,"['dragon', 'ground']"
+446,munchlax,6,1050,['normal']
+447,riolu,7,202,['fighting']
+448,lucario,12,540,"['fighting', 'steel']"
+449,hippopotas,8,495,['ground']
+450,hippowdon,20,3000,['ground']
+451,skorupi,8,120,"['poison', 'bug']"
+452,drapion,13,615,"['poison', 'dark']"
+453,croagunk,7,230,"['poison', 'fighting']"
+454,toxicroak,13,444,"['poison', 'fighting']"
+455,carnivine,14,270,['grass']
+456,finneon,4,70,['water']
+457,lumineon,12,240,['water']
+458,mantyke,10,650,"['water', 'flying']"
+459,snover,10,505,"['grass', 'ice']"
+460,abomasnow,22,1355,"['grass', 'ice']"
+461,weavile,11,340,"['dark', 'ice']"
+462,magnezone,12,1800,"['electric', 'steel']"
+463,lickilicky,17,1400,['normal']
+464,rhyperior,24,2828,"['ground', 'rock']"
+465,tangrowth,20,1286,['grass']
+466,electivire,18,1386,['electric']
+467,magmortar,16,680,['fire']
+468,togekiss,15,380,"['fairy', 'flying']"
+469,yanmega,19,515,"['bug', 'flying']"
+470,leafeon,10,255,['grass']
+471,glaceon,8,259,['ice']
+472,gliscor,20,425,"['ground', 'flying']"
+473,mamoswine,25,2910,"['ice', 'ground']"
+474,porygon-z,9,340,['normal']
+475,gallade,16,520,"['psychic', 'fighting']"
+476,probopass,14,3400,"['rock', 'steel']"
+477,dusknoir,22,1066,['ghost']
+478,froslass,13,266,"['ice', 'ghost']"
+479,rotom,3,3,"['electric', 'ghost']"
+480,uxie,3,3,['psychic']
+481,mesprit,3,3,['psychic']
+482,azelf,3,3,['psychic']
+483,dialga,54,6830,"['steel', 'dragon']"
+484,palkia,42,3360,"['water', 'dragon']"
+485,heatran,17,4300,"['fire', 'steel']"
+486,regigigas,37,4200,['normal']
+487,giratina-altered,45,7500,"['ghost', 'dragon']"
+488,cresselia,15,856,['psychic']
+489,phione,4,31,['water']
+490,manaphy,3,14,['water']
+491,darkrai,15,505,['dark']
+492,shaymin-land,2,21,['grass']
+493,arceus,32,3200,['normal']
+494,victini,4,40,"['psychic', 'fire']"
+495,snivy,6,81,['grass']
+496,servine,8,160,['grass']
+497,serperior,33,630,['grass']
+498,tepig,5,99,['fire']
+499,pignite,10,555,"['fire', 'fighting']"
+500,emboar,16,1500,"['fire', 'fighting']"
+501,oshawott,5,59,['water']
+502,dewott,8,245,['water']
+503,samurott,15,946,['water']
+504,patrat,5,116,['normal']
+505,watchog,11,270,['normal']
+506,lillipup,4,41,['normal']
+507,herdier,9,147,['normal']
+508,stoutland,12,610,['normal']
+509,purrloin,4,101,['dark']
+510,liepard,11,375,['dark']
+511,pansage,6,105,['grass']
+512,simisage,11,305,['grass']
+513,pansear,6,110,['fire']
+514,simisear,10,280,['fire']
+515,panpour,6,135,['water']
+516,simipour,10,290,['water']
+517,munna,6,233,['psychic']
+518,musharna,11,605,['psychic']
+519,pidove,3,21,"['normal', 'flying']"
+520,tranquill,6,150,"['normal', 'flying']"
+521,unfezant,12,290,"['normal', 'flying']"
+522,blitzle,8,298,['electric']
+523,zebstrika,16,795,['electric']
+524,roggenrola,4,180,['rock']
+525,boldore,9,1020,['rock']
+526,gigalith,17,2600,['rock']
+527,woobat,4,21,"['psychic', 'flying']"
+528,swoobat,9,105,"['psychic', 'flying']"
+529,drilbur,3,85,['ground']
+530,excadrill,7,404,"['ground', 'steel']"
+531,audino,11,310,['normal']
+532,timburr,6,125,['fighting']
+533,gurdurr,12,400,['fighting']
+534,conkeldurr,14,870,['fighting']
+535,tympole,5,45,['water']
+536,palpitoad,8,170,"['water', 'ground']"
+537,seismitoad,15,620,"['water', 'ground']"
+538,throh,13,555,['fighting']
+539,sawk,14,510,['fighting']
+540,sewaddle,3,25,"['bug', 'grass']"
+541,swadloon,5,73,"['bug', 'grass']"
+542,leavanny,12,205,"['bug', 'grass']"
+543,venipede,4,53,"['bug', 'poison']"
+544,whirlipede,12,585,"['bug', 'poison']"
+545,scolipede,25,2005,"['bug', 'poison']"
+546,cottonee,3,6,"['grass', 'fairy']"
+547,whimsicott,7,66,"['grass', 'fairy']"
+548,petilil,5,66,['grass']
+549,lilligant,11,163,['grass']
+550,basculin-red-striped,10,180,['water']
+551,sandile,7,152,"['ground', 'dark']"
+552,krokorok,10,334,"['ground', 'dark']"
+553,krookodile,15,963,"['ground', 'dark']"
+554,darumaka,6,375,['fire']
+555,darmanitan-standard,13,929,['fire']
+556,maractus,10,280,['grass']
+557,dwebble,3,145,"['bug', 'rock']"
+558,crustle,14,2000,"['bug', 'rock']"
+559,scraggy,6,118,"['dark', 'fighting']"
+560,scrafty,11,300,"['dark', 'fighting']"
+561,sigilyph,14,140,"['psychic', 'flying']"
+562,yamask,5,15,['ghost']
+563,cofagrigus,17,765,['ghost']
+564,tirtouga,7,165,"['water', 'rock']"
+565,carracosta,12,810,"['water', 'rock']"
+566,archen,5,95,"['rock', 'flying']"
+567,archeops,14,320,"['rock', 'flying']"
+568,trubbish,6,310,['poison']
+569,garbodor,19,1073,['poison']
+570,zorua,7,125,['dark']
+571,zoroark,16,811,['dark']
+572,minccino,4,58,['normal']
+573,cinccino,5,75,['normal']
+574,gothita,4,58,['psychic']
+575,gothorita,7,180,['psychic']
+576,gothitelle,15,440,['psychic']
+577,solosis,3,10,['psychic']
+578,duosion,6,80,['psychic']
+579,reuniclus,10,201,['psychic']
+580,ducklett,5,55,"['water', 'flying']"
+581,swanna,13,242,"['water', 'flying']"
+582,vanillite,4,57,['ice']
+583,vanillish,11,410,['ice']
+584,vanilluxe,13,575,['ice']
+585,deerling,6,195,"['normal', 'grass']"
+586,sawsbuck,19,925,"['normal', 'grass']"
+587,emolga,4,50,"['electric', 'flying']"
+588,karrablast,5,59,['bug']
+589,escavalier,10,330,"['bug', 'steel']"
+590,foongus,2,10,"['grass', 'poison']"
+591,amoonguss,6,105,"['grass', 'poison']"
+592,frillish-male,12,330,"['water', 'ghost']"
+593,jellicent-male,22,1350,"['water', 'ghost']"
+594,alomomola,12,316,['water']
+595,joltik,1,6,"['bug', 'electric']"
+596,galvantula,8,143,"['bug', 'electric']"
+597,ferroseed,6,188,"['grass', 'steel']"
+598,ferrothorn,10,1100,"['grass', 'steel']"
+599,klink,3,210,['steel']
+600,klang,6,510,['steel']
+601,klinklang,6,810,['steel']
+602,tynamo,2,3,['electric']
+603,eelektrik,12,220,['electric']
+604,eelektross,21,805,['electric']
+605,elgyem,5,90,['psychic']
+606,beheeyem,10,345,['psychic']
+607,litwick,3,31,"['ghost', 'fire']"
+608,lampent,6,130,"['ghost', 'fire']"
+609,chandelure,10,343,"['ghost', 'fire']"
+610,axew,6,180,['dragon']
+611,fraxure,10,360,['dragon']
+612,haxorus,18,1055,['dragon']
+613,cubchoo,5,85,['ice']
+614,beartic,26,2600,['ice']
+615,cryogonal,11,1480,['ice']
+616,shelmet,4,77,['bug']
+617,accelgor,8,253,['bug']
+618,stunfisk,7,110,"['ground', 'electric']"
+619,mienfoo,9,200,['fighting']
+620,mienshao,14,355,['fighting']
+621,druddigon,16,1390,['dragon']
+622,golett,10,920,"['ground', 'ghost']"
+623,golurk,28,3300,"['ground', 'ghost']"
+624,pawniard,5,102,"['dark', 'steel']"
+625,bisharp,16,700,"['dark', 'steel']"
+626,bouffalant,16,946,['normal']
+627,rufflet,5,105,"['normal', 'flying']"
+628,braviary,15,410,"['normal', 'flying']"
+629,vullaby,5,90,"['dark', 'flying']"
+630,mandibuzz,12,395,"['dark', 'flying']"
+631,heatmor,14,580,['fire']
+632,durant,3,330,"['bug', 'steel']"
+633,deino,8,173,"['dark', 'dragon']"
+634,zweilous,14,500,"['dark', 'dragon']"
+635,hydreigon,18,1600,"['dark', 'dragon']"
+636,larvesta,11,288,"['bug', 'fire']"
+637,volcarona,16,460,"['bug', 'fire']"
+638,cobalion,21,2500,"['steel', 'fighting']"
+639,terrakion,19,2600,"['rock', 'fighting']"
+640,virizion,20,2000,"['grass', 'fighting']"
+641,tornadus-incarnate,15,630,['flying']
+642,thundurus-incarnate,15,610,"['electric', 'flying']"
+643,reshiram,32,3300,"['dragon', 'fire']"
+644,zekrom,29,3450,"['dragon', 'electric']"
+645,landorus-incarnate,15,680,"['ground', 'flying']"
+646,kyurem,30,3250,"['dragon', 'ice']"
+647,keldeo-ordinary,14,485,"['water', 'fighting']"
+648,meloetta-aria,6,65,"['normal', 'psychic']"
+649,genesect,15,825,"['bug', 'steel']"
+650,chespin,4,90,['grass']
+651,quilladin,7,290,['grass']
+652,chesnaught,16,900,"['grass', 'fighting']"
+653,fennekin,4,94,['fire']
+654,braixen,10,145,['fire']
+655,delphox,15,390,"['fire', 'psychic']"
+656,froakie,3,70,['water']
+657,frogadier,6,109,['water']
+658,greninja,15,400,"['water', 'dark']"
+659,bunnelby,4,50,['normal']
+660,diggersby,10,424,"['normal', 'ground']"
+661,fletchling,3,17,"['normal', 'flying']"
+662,fletchinder,7,160,"['fire', 'flying']"
+663,talonflame,12,245,"['fire', 'flying']"
+664,scatterbug,3,25,['bug']
+665,spewpa,3,84,['bug']
+666,vivillon,12,170,"['bug', 'flying']"
+667,litleo,6,135,"['fire', 'normal']"
+668,pyroar-male,15,815,"['fire', 'normal']"
+669,flabebe,1,1,['fairy']
+670,floette,2,9,['fairy']
+671,florges,11,100,['fairy']
+672,skiddo,9,310,['grass']
+673,gogoat,17,910,['grass']
+674,pancham,6,80,['fighting']
+675,pangoro,21,1360,"['fighting', 'dark']"
+676,furfrou,12,280,['normal']
+677,espurr,3,35,['psychic']
+678,meowstic-male,6,85,['psychic']
+679,honedge,8,20,"['steel', 'ghost']"
+680,doublade,8,45,"['steel', 'ghost']"
+681,aegislash-shield,17,530,"['steel', 'ghost']"
+682,spritzee,2,5,['fairy']
+683,aromatisse,8,155,['fairy']
+684,swirlix,4,35,['fairy']
+685,slurpuff,8,50,['fairy']
+686,inkay,4,35,"['dark', 'psychic']"
+687,malamar,15,470,"['dark', 'psychic']"
+688,binacle,5,310,"['rock', 'water']"
+689,barbaracle,13,960,"['rock', 'water']"
+690,skrelp,5,73,"['poison', 'water']"
+691,dragalge,18,815,"['poison', 'dragon']"
+692,clauncher,5,83,['water']
+693,clawitzer,13,353,['water']
+694,helioptile,5,60,"['electric', 'normal']"
+695,heliolisk,10,210,"['electric', 'normal']"
+696,tyrunt,8,260,"['rock', 'dragon']"
+697,tyrantrum,25,2700,"['rock', 'dragon']"
+698,amaura,13,252,"['rock', 'ice']"
+699,aurorus,27,2250,"['rock', 'ice']"
+700,sylveon,10,235,['fairy']
+701,hawlucha,8,215,"['fighting', 'flying']"
+702,dedenne,2,22,"['electric', 'fairy']"
+703,carbink,3,57,"['rock', 'fairy']"
+704,goomy,3,28,['dragon']
+705,sliggoo,8,175,['dragon']
+706,goodra,20,1505,['dragon']
+707,klefki,2,30,"['steel', 'fairy']"
+708,phantump,4,70,"['ghost', 'grass']"
+709,trevenant,15,710,"['ghost', 'grass']"
+710,pumpkaboo-average,4,50,"['ghost', 'grass']"
+711,gourgeist-average,9,125,"['ghost', 'grass']"
+712,bergmite,10,995,['ice']
+713,avalugg,20,5050,['ice']
+714,noibat,5,80,"['flying', 'dragon']"
+715,noivern,15,850,"['flying', 'dragon']"
+716,xerneas,30,2150,['fairy']
+717,yveltal,58,2030,"['dark', 'flying']"
+718,zygarde-50,50,3050,"['dragon', 'ground']"
+719,diancie,7,88,"['rock', 'fairy']"
+720,hoopa,5,90,"['psychic', 'ghost']"
+721,volcanion,17,1950,"['fire', 'water']"
+722,rowlet,3,15,"['grass', 'flying']"
+723,dartrix,7,160,"['grass', 'flying']"
+724,decidueye,16,366,"['grass', 'ghost']"
+725,litten,4,43,['fire']
+726,torracat,7,250,['fire']
+727,incineroar,18,830,"['fire', 'dark']"
+728,popplio,4,75,['water']
+729,brionne,6,175,['water']
+730,primarina,18,440,"['water', 'fairy']"
+731,pikipek,3,12,"['normal', 'flying']"
+732,trumbeak,6,148,"['normal', 'flying']"
+733,toucannon,11,260,"['normal', 'flying']"
+734,yungoos,4,60,['normal']
+735,gumshoos,7,142,['normal']
+736,grubbin,4,44,['bug']
+737,charjabug,5,105,"['bug', 'electric']"
+738,vikavolt,15,450,"['bug', 'electric']"
+739,crabrawler,6,70,['fighting']
+740,crabominable,17,1800,"['fighting', 'ice']"
+741,oricorio-baile,6,34,"['fire', 'flying']"
+742,cutiefly,1,2,"['bug', 'fairy']"
+743,ribombee,2,5,"['bug', 'fairy']"
+744,rockruff,5,92,['rock']
+745,lycanroc-midday,8,250,['rock']
+746,wishiwashi-solo,2,3,['water']
+747,mareanie,4,80,"['poison', 'water']"
+748,toxapex,7,145,"['poison', 'water']"
+749,mudbray,10,1100,['ground']
+750,mudsdale,25,9200,['ground']
+751,dewpider,3,40,"['water', 'bug']"
+752,araquanid,18,820,"['water', 'bug']"
+753,fomantis,3,15,['grass']
+754,lurantis,9,185,['grass']
+755,morelull,2,15,"['grass', 'fairy']"
+756,shiinotic,10,115,"['grass', 'fairy']"
+757,salandit,6,48,"['poison', 'fire']"
+758,salazzle,12,222,"['poison', 'fire']"
+759,stufful,5,68,"['normal', 'fighting']"
+760,bewear,21,1350,"['normal', 'fighting']"
+761,bounsweet,3,32,['grass']
+762,steenee,7,82,['grass']
+763,tsareena,12,214,['grass']
+764,comfey,1,3,['fairy']
+765,oranguru,15,760,"['normal', 'psychic']"
+766,passimian,20,828,['fighting']
+767,wimpod,5,120,"['bug', 'water']"
+768,golisopod,20,1080,"['bug', 'water']"
+769,sandygast,5,700,"['ghost', 'ground']"
+770,palossand,13,2500,"['ghost', 'ground']"
+771,pyukumuku,3,12,['water']
+772,type-null,19,1205,['normal']
+773,silvally,23,1005,['normal']
+774,minior-red-meteor,3,400,"['rock', 'flying']"
+775,komala,4,199,['normal']
+776,turtonator,20,2120,"['fire', 'dragon']"
+777,togedemaru,3,33,"['electric', 'steel']"
+778,mimikyu-disguised,2,7,"['ghost', 'fairy']"
+779,bruxish,9,190,"['water', 'psychic']"
+780,drampa,30,1850,"['normal', 'dragon']"
+781,dhelmise,39,2100,"['ghost', 'grass']"
+782,jangmo-o,6,297,['dragon']
+783,hakamo-o,12,470,"['dragon', 'fighting']"
+784,kommo-o,16,782,"['dragon', 'fighting']"
+785,tapu-koko,18,205,"['electric', 'fairy']"
+786,tapu-lele,12,186,"['psychic', 'fairy']"
+787,tapu-bulu,19,455,"['grass', 'fairy']"
+788,tapu-fini,13,212,"['water', 'fairy']"
+789,cosmog,2,1,['psychic']
+790,cosmoem,1,9999,['psychic']
+791,solgaleo,34,2300,"['psychic', 'steel']"
+792,lunala,40,1200,"['psychic', 'ghost']"
+793,nihilego,12,555,"['rock', 'poison']"
+794,buzzwole,24,3336,"['bug', 'fighting']"
+795,pheromosa,18,250,"['bug', 'fighting']"
+796,xurkitree,38,1000,['electric']
+797,celesteela,92,9999,"['steel', 'flying']"
+798,kartana,3,1,"['grass', 'steel']"
+799,guzzlord,55,8880,"['dark', 'dragon']"
+800,necrozma,24,2300,['psychic']
+801,magearna,10,805,"['steel', 'fairy']"
+802,marshadow,7,222,"['fighting', 'ghost']"
+803,poipole,6,18,['poison']
+804,naganadel,36,1500,"['poison', 'dragon']"
+805,stakataka,55,8200,"['rock', 'steel']"
+806,blacephalon,18,130,"['fire', 'ghost']"
+807,zeraora,15,445,['electric']
+808,meltan,2,80,['steel']
+809,melmetal,25,8000,['steel']
+810,grookey,3,50,['grass']
+811,thwackey,7,140,['grass']
+812,rillaboom,21,900,['grass']
+813,scorbunny,3,45,['fire']
+814,raboot,6,90,['fire']
+815,cinderace,14,330,['fire']
+816,sobble,3,40,['water']
+817,drizzile,7,115,['water']
+818,inteleon,19,452,['water']
+819,skwovet,3,25,['normal']
+820,greedent,6,60,['normal']
+821,rookidee,2,18,['flying']
+822,corvisquire,8,160,['flying']
+823,corviknight,22,750,"['flying', 'steel']"
+824,blipbug,4,80,['bug']
+825,dottler,4,195,"['bug', 'psychic']"
+826,orbeetle,4,408,"['bug', 'psychic']"
+827,nickit,6,89,['dark']
+828,thievul,12,199,['dark']
+829,gossifleur,4,22,['grass']
+830,eldegoss,5,25,['grass']
+831,wooloo,6,60,['normal']
+832,dubwool,13,430,['normal']
+833,chewtle,3,85,['water']
+834,drednaw,10,1155,"['water', 'rock']"
+835,yamper,3,135,['electric']
+836,boltund,10,340,['electric']
+837,rolycoly,3,120,['rock']
+838,carkol,11,780,"['rock', 'fire']"
+839,coalossal,28,3105,"['rock', 'fire']"
+840,applin,2,5,"['grass', 'dragon']"
+841,flapple,3,10,"['grass', 'dragon']"
+842,appletun,4,130,"['grass', 'dragon']"
+843,silicobra,22,76,['ground']
+844,sandaconda,38,655,['ground']
+845,cramorant,8,180,"['flying', 'water']"
+846,arrokuda,5,10,['water']
+847,barraskewda,13,300,['water']
+848,toxel,4,110,"['electric', 'poison']"
+849,toxtricity-amped,16,400,"['electric', 'poison']"
+850,sizzlipede,7,10,"['fire', 'bug']"
+851,centiskorch,30,1200,"['fire', 'bug']"
+852,clobbopus,6,40,['fighting']
+853,grapploct,16,390,['fighting']
+854,sinistea,1,2,['ghost']
+855,polteageist,2,4,['ghost']
+856,hatenna,4,34,['psychic']
+857,hattrem,6,48,['psychic']
+858,hatterene,21,51,"['psychic', 'fairy']"
+859,impidimp,4,55,"['dark', 'fairy']"
+860,morgrem,8,125,"['dark', 'fairy']"
+861,grimmsnarl,15,610,"['dark', 'fairy']"
+862,obstagoon,16,460,"['dark', 'normal']"
+863,perrserker,8,280,['steel']
+864,cursola,10,4,['ghost']
+865,sirfetchd,8,1170,['fighting']
+866,mr-rime,15,582,"['ice', 'psychic']"
+867,runerigus,16,666,"['ground', 'ghost']"
+868,milcery,2,3,['fairy']
+869,alcremie,3,5,['fairy']
+870,falinks,30,620,['fighting']
+871,pincurchin,3,10,['electric']
+872,snom,3,38,"['ice', 'bug']"
+873,frosmoth,13,420,"['ice', 'bug']"
+874,stonjourner,25,5200,['rock']
+875,eiscue-ice,14,890,['ice']
+876,indeedee-male,9,280,"['psychic', 'normal']"
+877,morpeko-full-belly,3,30,"['electric', 'dark']"
+878,cufant,12,1000,['steel']
+879,copperajah,30,6500,['steel']
+880,dracozolt,18,1900,"['electric', 'dragon']"
+881,arctozolt,23,1500,"['electric', 'ice']"
+882,dracovish,23,2150,"['water', 'dragon']"
+883,arctovish,20,1750,"['water', 'ice']"
+884,duraludon,18,400,"['steel', 'dragon']"
+885,dreepy,5,20,"['dragon', 'ghost']"
+886,drakloak,14,110,"['dragon', 'ghost']"
+887,dragapult,30,500,"['dragon', 'ghost']"
+888,zacian,28,1100,['fairy']
+889,zamazenta,29,2100,['fighting']
+890,eternatus,200,9500,"['poison', 'dragon']"
+891,kubfu,6,120,['fighting']
+892,urshifu-single-strike,19,1050,"['fighting', 'dark']"
+893,zarude,18,700,"['dark', 'grass']"
+894,regieleki,12,1450,['electric']
+895,regidrago,21,2000,['dragon']
+896,glastrier,22,8000,['ice']
+897,spectrier,20,445,['ghost']
+898,calyrex,11,77,"['psychic', 'grass']"
+899,wyrdeer,18,951,"['normal', 'psychic']"
+900,kleavor,18,890,"['bug', 'rock']"
+901,ursaluna,24,2900,"['ground', 'normal']"
+902,basculegion-male,30,1100,"['water', 'ghost']"
+903,sneasler,13,430,"['fighting', 'poison']"
+904,overqwil,25,605,"['dark', 'poison']"
+905,enamorus-incarnate,16,480,"['fairy', 'flying']"
+906,sprigatito,4,41,['grass']
+907,floragato,9,122,['grass']
+908,meowscarada,15,312,"['grass', 'dark']"
+909,fuecoco,4,98,['fire']
+910,crocalor,10,307,['fire']
+911,skeledirge,16,3265,"['fire', 'ghost']"
+912,quaxly,5,61,['water']
+913,quaxwell,12,215,['water']
+914,quaquaval,18,619,"['water', 'fighting']"
+915,lechonk,5,102,['normal']
+916,oinkologne-male,10,1200,['normal']
+917,tarountula,3,40,['bug']
+918,spidops,10,165,['bug']
+919,nymble,2,10,['bug']
+920,lokix,10,175,"['bug', 'dark']"
+921,pawmi,3,25,['electric']
+922,pawmo,4,65,"['electric', 'fighting']"
+923,pawmot,9,410,"['electric', 'fighting']"
+924,tandemaus,3,18,['normal']
+925,maushold-family-of-four,3,28,['normal']
+926,fidough,3,109,['fairy']
+927,dachsbun,5,149,['fairy']
+928,smoliv,3,65,"['grass', 'normal']"
+929,dolliv,6,119,"['grass', 'normal']"
+930,arboliva,14,482,"['grass', 'normal']"
+931,squawkabilly-green-plumage,6,24,"['normal', 'flying']"
+932,nacli,4,160,['rock']
+933,naclstack,6,1050,['rock']
+934,garganacl,23,2400,['rock']
+935,charcadet,6,105,['fire']
+936,armarouge,15,850,"['fire', 'psychic']"
+937,ceruledge,16,620,"['fire', 'ghost']"
+938,tadbulb,3,4,['electric']
+939,bellibolt,12,1130,['electric']
+940,wattrel,4,36,"['electric', 'flying']"
+941,kilowattrel,14,386,"['electric', 'flying']"
+942,maschiff,5,160,['dark']
+943,mabosstiff,11,610,['dark']
+944,shroodle,2,7,"['poison', 'normal']"
+945,grafaiai,7,272,"['poison', 'normal']"
+946,bramblin,6,6,"['grass', 'ghost']"
+947,brambleghast,12,60,"['grass', 'ghost']"
+948,toedscool,9,330,"['ground', 'grass']"
+949,toedscruel,19,580,"['ground', 'grass']"
+950,klawf,13,790,['rock']
+951,capsakid,3,30,['grass']
+952,scovillain,9,150,"['grass', 'fire']"
+953,rellor,2,10,['bug']
+954,rabsca,3,35,"['bug', 'psychic']"
+955,flittle,2,15,['psychic']
+956,espathra,19,900,['psychic']
+957,tinkatink,4,89,"['fairy', 'steel']"
+958,tinkatuff,7,591,"['fairy', 'steel']"
+959,tinkaton,7,1128,"['fairy', 'steel']"
+960,wiglett,12,18,['water']
+961,wugtrio,12,54,['water']
+962,bombirdier,15,429,"['flying', 'dark']"
+963,finizen,13,602,['water']
+964,palafin-zero,13,602,['water']
+965,varoom,10,350,"['steel', 'poison']"
+966,revavroom,18,1200,"['steel', 'poison']"
+967,cyclizar,16,630,"['dragon', 'normal']"
+968,orthworm,25,3100,['steel']
+969,glimmet,7,80,"['rock', 'poison']"
+970,glimmora,15,450,"['rock', 'poison']"
+971,greavard,6,350,['ghost']
+972,houndstone,20,150,['ghost']
+973,flamigo,16,370,"['flying', 'fighting']"
+974,cetoddle,12,450,['ice']
+975,cetitan,45,7000,['ice']
+976,veluza,25,900,"['water', 'psychic']"
+977,dondozo,120,2200,['water']
+978,tatsugiri-curly,3,80,"['dragon', 'water']"
+979,annihilape,12,560,"['fighting', 'ghost']"
+980,clodsire,18,2230,"['poison', 'ground']"
+981,farigiraf,32,1600,"['normal', 'psychic']"
+982,dudunsparce-two-segment,36,392,['normal']
+983,kingambit,20,1200,"['dark', 'steel']"
+984,great-tusk,22,3200,"['ground', 'fighting']"
+985,scream-tail,12,80,"['fairy', 'psychic']"
+986,brute-bonnet,12,210,"['grass', 'dark']"
+987,flutter-mane,14,40,"['ghost', 'fairy']"
+988,slither-wing,32,920,"['bug', 'fighting']"
+989,sandy-shocks,23,600,"['electric', 'ground']"
+990,iron-treads,9,2400,"['ground', 'steel']"
+991,iron-bundle,6,110,"['ice', 'water']"
+992,iron-hands,18,3807,"['fighting', 'electric']"
+993,iron-jugulis,13,1110,"['dark', 'flying']"
+994,iron-moth,12,360,"['fire', 'poison']"
+995,iron-thorns,16,3030,"['rock', 'electric']"
+996,frigibax,5,170,"['dragon', 'ice']"
+997,arctibax,8,300,"['dragon', 'ice']"
+998,baxcalibur,21,2100,"['dragon', 'ice']"
+999,gimmighoul,3,50,['ghost']
+1000,gholdengo,12,300,"['steel', 'ghost']"
