@@ -1,27 +1,54 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Lab 4</title>
+    <title>STATS 401 Labs</title>
 
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-
 <body>
+    <nav class="lab-nav">
+        <a href="../index.html">Home</a>
+        <a href="../lab1/index.html">Lab 1</a>
+        <a href="../lab2/index.html">Lab 2</a>
+        <a href="../lab3/index.html">Lab 3</a>
+        <a href="../lab4/index.html">Lab 4</a>
+        <a href="../lab5/index.html">Lab 5</a>
+        <a href="../lab6/index.html">Lab 6</a>
+        <a href="../lab7/index.html">Lab 7</a>
+        <a href="../lab8/index.html">Lab 8</a>
+        <a href="../lab9/index.html">Lab 9</a>
+        <a href="../lab10/index.html">Lab 10</a>
+    </nav>
+    <h1>STATS 401: Data Acquisition and Visualization</h1>
+    <h3>Tobias Garcia</h3>
+    <h3>Net ID: tag41</h3>
+    <h2>Lab 4: Cleaning Web Data for Visualization</h2>
 
-    <h1>Lab 4</h1>
+    <h3>Tweet sentiment by keyword</h3>
 
     <p>
-        Lab 4 will be added here.
+        Each circle is a keyword. Position and color
+        show average sentiment; height and size show
+        tweet count.
     </p>
 
-    <a href="../index.html">
-        Back to home
-    </a>
+    <div id="chart" style="width:100%"></div>
 
+    <div id="tooltip"style="display:none;position:absolute;background:white;border:1px solid #777;padding:7px;pointer-events:none"></div>
+
+    <h3>Analysis</h3>
+
+    <p>
+        Sentiment analysis was performed using the CardiffNLP Twitter-RoBERTa model. Mentions and URLs were replaced with the model's recommended placeholders before inference. This analysis uses a Kaggle collection of 11,370 English-language tweets organized around disaster-related keywords. I removed records without usable IDs or text, removed duplicate rows and IDs, normalized text, converted encoded spaces in keywords, parsed numeric fields, and assigned explicit values to missing keyword and location entries. The chart compares the 30 most frequent qualifying keywords (at least 25 tweets each). Horizontal position and color encode mean sentiment score, calculated as positive probability minus negative probability; vertical position and circle size encode tweet count. All 30 displayed keyword groups have negative average scores. Among them, airplane accident, traumatised, and mass murder are the most negative, while thunderstorm is closest to neutral. Group sizes also vary, with thunderstorm appearing most often among the displayed terms.
+    </p>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="lab4.js"></script>
 </body>
 
 </html>
