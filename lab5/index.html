@@ -1,27 +1,317 @@
-<!DOCTYPE html>
-
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Lab 5</title>
+    <title>Lab 5 | Urban Transit Network</title>
 
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .intro {
+            max-width: 820px;
+        }
+
+        .viz-panel {
+            margin: 20px 0 38px;
+            padding: 18px;
+            background: #fafafa;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+
+        .viz-panel h3 {
+            margin: 0 0 6px;
+        }
+
+        .hint {
+            margin: 0 0 14px;
+            color: #4b5563;
+            font-size: 14px;
+        }
+
+        .network-svg,
+        .matrix-svg {
+            display: block;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+        }
+
+        .network-link {
+            stroke-linecap: round;
+            cursor: pointer;
+        }
+
+        .network-node {
+            cursor: grab;
+        }
+
+        .network-node:active {
+            cursor: grabbing;
+        }
+
+        .station-label {
+            font-size: 10px;
+            fill: #27303b;
+            pointer-events: none;
+            paint-order: stroke;
+            stroke: #fff;
+            stroke-width: 3px;
+            stroke-linejoin: round;
+        }
+
+        .legend-title {
+            font-size: 12px;
+            font-weight: 700;
+            fill: #1f2937;
+        }
+
+        .legend-label {
+            font-size: 11px;
+            fill: #374151;
+        }
+
+        .matrix-cell {
+            shape-rendering: crispEdges;
+            cursor: pointer;
+        }
+
+        .matrix-label {
+            font-size: 9px;
+        }
+
+        .matrix-block-label {
+            font-size: 10px;
+            font-weight: 700;
+            fill: #374151;
+        }
+
+        .findings {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        .findings th,
+        .findings td {
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        .findings th {
+            background: #eef2f7;
+        }
+
+        .tooltip {
+            opacity: 0;
+            z-index: 5;
+            max-width: 250px;
+        }
+
+        .error {
+            color: #b91c1c;
+        }
+    </style>
 </head>
-
 <body>
+    <nav class="lab-nav">
+        <a href="../index.html">Home</a>
+        <a href="../lab1/index.html">Lab 1</a>
+        <a href="../lab2/index.html">Lab 2</a>
+        <a href="../lab3/index.html">Lab 3</a>
+        <a href="../lab4/index.html">Lab 4</a>
+        <a href="index.html">Lab 5</a>
+        <a href="../lab6/index.html">Lab 6</a>
+        <a href="../lab7/index.html">Lab 7</a>
+        <a href="../lab8/index.html">Lab 8</a>
+        <a href="../lab9/index.html">Lab 9</a>
+        <a href="../lab10/index.html">Lab 10</a>
+    </nav>
 
-    <h1>Lab 5</h1>
+    <h1>STATS 401: Data Acquisition and Visualization</h1>
+    <h3>Tobias Garcia</h3>
+    <h3>Net ID: tag41</h3>
+    <h2>Lab 5: Interactive Network Visualization</h2>
 
-    <p>
-        Lab 5 will be added here.
-    </p>
+    <section class="intro">
+        <h2>Dataset description</h2>
+        <p>
+            This synthetic urban transit network has 50 stations in
+            Central, North, South, East, and West districts, and 50
+            undirected direct routes. Stations record daily passengers
+            and a local, transfer, or terminal role; routes record
+            service type and travel time.
+        </p>
+    </section>
 
-    <a href="../index.html">
-        Back to home
-    </a>
+    <section>
+        <h2>Node-link visualization</h2>
 
+        <div class="viz-panel">
+            <h3>Direct transit connections</h3>
+            <p class="hint">
+                Hover a station or route to isolate its local connections
+                and see details. Drag stations to rearrange the force
+                layout. District names provide weak cardinal placement,
+                not exact geographic coordinates.
+            </p>
+            <div id="network"></div>
+        </div>
+
+        <h3>Node-link design description</h3>
+        <p>
+            District is encoded with a distinct node fill color, so
+            geographic membership can be scanned across the topology.
+            Weak positional forces place North, South, East, and West in
+            their corresponding directions around Central; this reflects
+            the broad district names without implying exact station
+            coordinates. Daily passengers use area (a square-root size
+            scale), making heavily used stations visually prominent
+            without overwhelming smaller stations. Local stations are
+            circles, transfer stations diamonds, and terminals squares
+            because shape preserves station role even when colors are
+            compared. Route color distinguishes Metro, Express, and
+            Shuttle service; wider, more opaque lines indicate longer
+            travel times. Hovering highlights stations, routes, and
+            endpoints; tooltips supply exact values. Dragging lets the
+            reader separate crowded crossings.
+        </p>
+    </section>
+
+    <section>
+        <h2>Adjacency matrix</h2>
+
+        <div class="viz-panel">
+            <h3>Connections ordered by district, station type, and ID</h3>
+            <p class="hint">
+                Each filled off-diagonal cell is a direct route. Its color
+                is route type and its opacity is travel time; diagonal
+                cells identify each station's district. Hover a cell for
+                the route details.
+            </p>
+            <div id="matrix"></div>
+        </div>
+
+        <h3>Matrix design description</h3>
+        <p>
+            Rows and columns use the same station order: district first,
+            then station type, then station ID. The colored row and column
+            labels and diagonal cells retain district membership, and the
+            grouping creates five visible district blocks. Filled
+            symmetric cells show the undirected connections. Their service
+            color and travel-time opacity preserve the two route attributes
+            without asking the reader to decode line length or crossing
+            paths. This matrix is especially useful for checking whether a
+            pair is directly connected and for spotting the long
+            cross-district links that sit away from the diagonal; the
+            node-link view remains better for following topology.
+        </p>
+    </section>
+
+    <section>
+        <h2>Network questions and findings</h2>
+
+        <table class="findings">
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Best view</th>
+                    <th>Finding from the visualization</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Which stations appear central?</td>
+                    <td>Node-link</td>
+                    <td>
+                        Partially answered: the most central-looking
+                        stations are the degree-3 junctions, especially s7,
+                        s16, s18, s21, s23, s31, s33, s34, and s38. They
+                        join the main spine to long cross-links; the diagram
+                        makes their three incident lines easy to see.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Which districts are strongly connected?</td>
+                    <td>Both</td>
+                    <td>
+                        Partially answered: most spine routes cross between
+                        neighboring district colors, so no same-district
+                        block dominates. The matrix's off-diagonal blocks
+                        and the node-link's long links show eight repeated
+                        neighboring-district routes plus three East-South
+                        cross-links (s4-s23, s18-s34, and s33-s44). The
+                        North-Central s7-s31 and North-West s25-s47 links
+                        are additional cross-district bridges.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Where are transfer or terminal stations?</td>
+                    <td>Node-link</td>
+                    <td>
+                        Well answered by shape: diamonds (transfer) and
+                        squares (terminal) are distributed along the spine.
+                        Several terminal squares, including s7, s10, s16,
+                        s25, s31, and s34, are also junctions; transfer
+                        stations s23, s29, and s38 likewise sit on
+                        cross-links.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Which stations have high passenger volume?</td>
+                    <td>Node-link</td>
+                    <td>
+                        Well answered by size: s50, s49, s48, s47, and s46
+                        are the largest nodes. The view also reveals that
+                        most of these high-volume stations are peripheral
+                        or isolated rather than central in this route
+                        topology.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Where are the longest direct travel-time connections?
+                    </td>
+                    <td>Both</td>
+                    <td>
+                        Well answered: the widest/darkest Express link
+                        s7-s31 is longest at 16 minutes, followed by
+                        s18-s34 (15) and s29-s50 (14). The matching
+                        high-opacity matrix cells verify these pairs.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Are route types concentrated in particular areas?
+                    </td>
+                    <td>Both</td>
+                    <td>
+                        Partially answered: route colors alternate regularly
+                        along the main spine rather than clustering in one
+                        district. Express is the only type used by all three
+                        of the longest cross-links, while Metro and Shuttle
+                        also appear on several long cross-district
+                        connections.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div id="tooltip"
+         class="tooltip"
+         role="status"
+         aria-live="polite"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="lab5.js"></script>
 </body>
 
 </html>
