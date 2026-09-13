@@ -167,21 +167,7 @@
 
         <h3>Node-link design description</h3>
         <p>
-            District is encoded with a distinct node fill color, so
-            geographic membership can be scanned across the topology.
-            Weak positional forces place North, South, East, and West in
-            their corresponding directions around Central; this reflects
-            the broad district names without implying exact station
-            coordinates. Daily passengers use area (a square-root size
-            scale), making heavily used stations visually prominent
-            without overwhelming smaller stations. Local stations are
-            circles, transfer stations diamonds, and terminals squares
-            because shape preserves station role even when colors are
-            compared. Route color distinguishes Metro, Express, and
-            Shuttle service; wider, more opaque lines indicate longer
-            travel times. Hovering highlights stations, routes, and
-            endpoints; tooltips supply exact values. Dragging lets the
-            reader separate crowded crossings.
+            District is encoded with a distinct node fill color. Weak positional forces place North, South, East, and West in their corresponding directions around Central, reflecting the broad district names without knowing the actual station coordinates. Daily passengers use area to make more heavily used stations prominent. Local stations are circles, transfer stations are diamonds, and terminals are squares (encoding by shape). Route color distinguishes Metro, Express, and Shuttle service. Wider, more opaque lines indicate longer travel times. Hovering highlights stations, routes, and endpoints. Dragging lets the reader separate crowded crossings.
         </p>
     </section>
 
@@ -201,17 +187,7 @@
 
         <h3>Matrix design description</h3>
         <p>
-            Rows and columns use the same station order: district first,
-            then station type, then station ID. The colored row and column
-            labels and diagonal cells retain district membership, and the
-            grouping creates five visible district blocks. Filled
-            symmetric cells show the undirected connections. Their service
-            color and travel-time opacity preserve the two route attributes
-            without asking the reader to decode line length or crossing
-            paths. This matrix is especially useful for checking whether a
-            pair is directly connected and for spotting the long
-            cross-district links that sit away from the diagonal; the
-            node-link view remains better for following topology.
+            Rows and columns use the same station order: district first, then station type, then station ID. The colored row and column labels and diagonal cells show district membership and the grouping creates five visible district blocks. The colored symmetric cells show the undirected connections. Their service color and travel-time opacity preserve the two route attributes without requiring the reader to decode line length or crossing paths. This matrix is particularly useful for checking whether a pair is directly connected and for spotting the long cross-district links that sit away from the diagonal. However, the node-link view is better for following topology.
         </p>
     </section>
 
@@ -256,7 +232,7 @@
                     <td>Where are transfer or terminal stations?</td>
                     <td>Node-link</td>
                     <td>
-                        Well answered by shape: diamonds (transfer) and
+                        Answered by shape: diamonds (transfer) and
                         squares (terminal) are distributed along the spine.
                         Several terminal squares, including s7, s10, s16,
                         s25, s31, and s34, are also junctions; transfer
@@ -268,7 +244,7 @@
                     <td>Which stations have high passenger volume?</td>
                     <td>Node-link</td>
                     <td>
-                        Well answered by size: s50, s49, s48, s47, and s46
+                        Answered by size: s50, s49, s48, s47, and s46
                         are the largest nodes. The view also reveals that
                         most of these high-volume stations are peripheral
                         or isolated rather than central in this route
@@ -281,7 +257,7 @@
                     </td>
                     <td>Both</td>
                     <td>
-                        Well answered: the widest/darkest Express link
+                        Answered: the widest/darkest Express link
                         s7-s31 is longest at 16 minutes, followed by
                         s18-s34 (15) and s29-s50 (14). The matching
                         high-opacity matrix cells verify these pairs.
