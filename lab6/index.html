@@ -1,27 +1,163 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Lab 6</title>
+    <title>Lab 6 | Hierarchical GDP Treemaps</title>
 
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .intro {
+            max-width: 820px;
+        }
+
+        .viz-panel {
+            margin: 20px 0 38px;
+            padding: 18px;
+            background: #fafafa;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+
+        .viz-panel h3 {
+            margin: 0 0 6px;
+        }
+
+        .hint {
+            margin: 0 0 14px;
+            color: #4b5563;
+            font-size: 14px;
+        }
+
+        .treemap-svg {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            background: #fff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+        }
+
+        .country-cell {
+            cursor: pointer;
+        }
+
+        .country-label,
+        .group-label {
+            pointer-events: none;
+        }
+
+        .country-label {
+            font-size: 11px;
+            fill: #111827;
+        }
+
+        .country-value {
+            font-size: 10px;
+            fill: #374151;
+        }
+
+        .continent-label {
+            font-size: 13px;
+            font-weight: 700;
+            fill: #111827;
+        }
+
+        .area-label {
+            font-size: 10px;
+            font-weight: 600;
+            fill: #374151;
+        }
+
+        .legend-label {
+            font-size: 12px;
+            fill: #374151;
+        }
+
+        .tooltip {
+            opacity: 0;
+            z-index: 5;
+            max-width: 260px;
+        }
+
+        .error {
+            color: #b91c1c;
+        }
+    </style>
 </head>
-
 <body>
+    <nav class="lab-nav">
+        <a href="../index.html">Home</a>
+        <a href="../lab1/index.html">Lab 1</a>
+        <a href="../lab2/index.html">Lab 2</a>
+        <a href="../lab3/index.html">Lab 3</a>
+        <a href="../lab4/index.html">Lab 4</a>
+        <a href="../lab5/index.html">Lab 5</a>
+        <a href="index.html">Lab 6</a>
+        <a href="../lab7/index.html">Lab 7</a>
+        <a href="../lab8/index.html">Lab 8</a>
+        <a href="../lab9/index.html">Lab 9</a>
+        <a href="../lab10/index.html">Lab 10</a>
+    </nav>
 
-    <h1>Lab 6</h1>
+    <h1>STATS 401: Data Acquisition and Visualization</h1>
+    <h3>Tobias Garcia</h3>
+    <h3>Net ID: tag41</h3>
+    <h2>Lab 6: Hierarchical GDP Treemaps</h2>
 
-    <p>
-        Lab 6 will be added here.
-    </p>
+    <section class="intro">
+        <h2>Dataset description</h2>
+        <p>
+            This synthetic dataset organizes 27 countries into areas and
+            continents. Rectangle area represents GDP in billions of U.S.
+            dollars, while color represents whether GDP increased, was
+            unchanged, or decreased.
+        </p>
+    </section>
 
-    <a href="../index.html">
-        Back to home
-    </a>
+    <section>
+        <h2>Squarified treemap</h2>
+        <div class="viz-panel">
+            <h3>GDP by continent, area, and country</h3>
+            <p class="hint">
+                Hover a country for its hierarchy, GDP, and status.
+                Rectangle area is proportional to GDP.
+            </p>
+            <div id="squarify-treemap"></div>
+        </div>
+    </section>
 
+    <section>
+        <h2>Slice-and-dice treemap</h2>
+        <div class="viz-panel">
+            <h3>GDP by continent, area, and country</h3>
+            <p class="hint">
+                The same data and encodings use alternating horizontal
+                and vertical subdivision.
+            </p>
+            <div id="slice-dice-treemap"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Design description</h2>
+        <p>
+            In both treemaps, rectangle area encodes GDP because area supports direct part-to-whole comparison within the world, continents, and subregions. A blue, gray, and orange palette encodes categorical attributes for status (Increase, Unchanged, and Decrease). Continent and area headers, borders, and country labels make the nested hierarchy visible, while tooltips provide exact values. The squarified layout creates compact rectangles with similar aspect ratios, so country labels and comparisons among countries are generally easier to read. The slice-and-dice layout alternates the split direction at each hierarchy level. Its aligned bands make parent-child membership clear but small-GDP countries can become too narrow with labels that do not fit.
+        </p>
+    </section>
+
+    <div id="tooltip"
+         class="tooltip"
+         role="status"
+         aria-live="polite"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="lab6.js"></script>
 </body>
 
 </html>
