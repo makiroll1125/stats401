@@ -5,9 +5,9 @@ const statusOrder = [
 ];
 
 const statusColors = {
-    Increase: "#6baed6",
+    Increase: "#6bd67d",
     Unchanged: "#bdbdbd",
-    Decrease: "#f4a261"
+    Decrease: "#f46161"
 };
 
 const tooltip = d3.select("#tooltip");
@@ -109,13 +109,13 @@ function drawTreemap(
             chartHeight
         ])
         .paddingOuter(4)
-        .paddingInner(2)
+        .paddingInner(4)
         .paddingTop(
             d => (
                 d.depth === 1
-                ? 24
+                ? 30
                 : d.depth === 2
-                ? 18
+                ? 24
                 : 0
             )
         )
@@ -141,6 +141,20 @@ function drawTreemap(
         );
 
     const definitions = svg.append("defs");
+
+    function showCountryName(d) {
+        return (
+            d.x1 - d.x0 > 65 &&
+            d.y1 - d.y0 > 30
+        );
+    }
+
+    function showCountryValue(d) {
+        return (
+            d.x1 - d.x0 > 84 &&
+            d.y1 - d.y0 > 50
+        );
+    }
 
     definitions.selectAll("clipPath")
         .data(root.leaves())
@@ -189,7 +203,7 @@ function drawTreemap(
             d => statusColors[d.data.status]
         )
         .attr("stroke", "#fff")
-        .attr("stroke-width", 1);
+        .attr("stroke-width", 2);
 
     cells.append("title")
         .text(
@@ -204,8 +218,18 @@ function drawTreemap(
 
     cells.append("text")
         .attr("class", "country-label")
-        .attr("x", d => d.x0 + 5)
-        .attr("y", d => d.y0 + 15)
+        .attr("text-anchor", "middle")
+        .attr(
+            "x",
+            d => (d.x0 + d.x1) / 2
+        )
+        .attr(
+            "y",
+            d => (
+                (d.y0 + d.y1) / 2 +
+                (showCountryValue(d) ? -3 : 5)
+            )
+        )
         .attr(
             "clip-path",
             (d, i) => (
@@ -218,19 +242,21 @@ function drawTreemap(
         )
         .style(
             "display",
-            d => (
-                d.x1 - d.x0 > 54 &&
-                d.y1 - d.y0 > 24
-                ? null
-                : "none"
-            )
+            d => showCountryName(d) ? null : "none"
         )
         .text(d => d.data.name);
 
     cells.append("text")
         .attr("class", "country-label country-value")
-        .attr("x", d => d.x0 + 5)
-        .attr("y", d => d.y0 + 29)
+        .attr("text-anchor", "middle")
+        .attr(
+            "x",
+            d => (d.x0 + d.x1) / 2
+        )
+        .attr(
+            "y",
+            d => (d.y0 + d.y1) / 2 + 15
+        )
         .attr(
             "clip-path",
             (d, i) => (
@@ -243,26 +269,38 @@ function drawTreemap(
         )
         .style(
             "display",
-            d => (
-                d.x1 - d.x0 > 72 &&
-                d.y1 - d.y0 > 40
-                ? null
-                : "none"
-            )
+            d => showCountryValue(d) ? null : "none"
         )
         .text(
             d => "$" + formatGDP(d.data.gdp) + "B"
         );
 
-    drawGroupBoundaries(svg, root);
+    drawGroupBoundaries(
+        svg,
+        root,
+        idPrefix
+    );
     drawLegend(svg, chartHeight, width);
 }
 
-function drawGroupBoundaries(svg, root) {
+function drawGroupBoundaries(
+    svg,
+    root,
+    idPrefix
+) {
     const groups = root.descendants()
         .filter(
             d => d.depth === 1 || d.depth === 2
         );
+
+    function useVerticalLabel(d) {
+        return (
+            idPrefix === "slice-dice" &&
+            d.depth === 1 &&
+            d.x1 - d.x0 <= 60 &&
+            d.y1 - d.y0 > 90
+        );
+    }
 
     svg.append("g")
         .selectAll("rect")
@@ -281,11 +319,15 @@ function drawGroupBoundaries(svg, root) {
         .attr("fill", "none")
         .attr(
             "stroke",
-            d => d.depth === 1 ? "#27303b" : "#fff"
+            d => (
+                d.depth === 1
+                ? "#111827"
+                : "#64748b"
+            )
         )
         .attr(
             "stroke-width",
-            d => d.depth === 1 ? 2 : 1
+            d => d.depth === 1 ? 4 : 2.5
         )
         .attr("pointer-events", "none");
 
@@ -301,18 +343,59 @@ function drawGroupBoundaries(svg, root) {
                 : "group-label area-label"
             )
         )
-        .attr("x", d => d.x0 + 5)
+        .attr(
+            "x",
+            d => (
+                useVerticalLabel(d)
+                ? d.x0 + (d.x1 - d.x0) / 2
+                : d.x0 + 6
+            )
+        )
         .attr(
             "y",
-            d => d.y0 + (d.depth === 1 ? 16 : 13)
+            d => (
+                useVerticalLabel(d)
+                ? d.y0 + 8
+                : d.y0 + (d.depth === 1 ? 20 : 17)
+            )
+        )
+        .attr(
+            "transform",
+            d => (
+                useVerticalLabel(d)
+                ? "rotate(90 " +
+                    (d.x0 + (d.x1 - d.x0) / 2) +
+                    " " +
+                    (d.y0 + 8) +
+                    ")"
+                : null
+            )
+        )
+        .attr(
+            "text-anchor",
+            d => useVerticalLabel(d) ? "start" : null
+        )
+        .attr(
+            "dominant-baseline",
+            d => useVerticalLabel(d) ? "middle" : null
+        )
+        .style(
+            "font-size",
+            d => useVerticalLabel(d) ? "13px" : null
         )
         .style(
             "display",
-            d => (
-                d.x1 - d.x0 > 45
-                ? null
-                : "none"
-            )
+            d => {
+                const width = d.x1 - d.x0;
+                const height = d.y1 - d.y0;
+                const hasRoom = d.depth === 1
+                    ? width > 60 && height > 26
+                    : width > 70 && height > 30;
+
+                return hasRoom || useVerticalLabel(d)
+                    ? null
+                    : "none";
+            }
         )
         .text(d => d.data.name);
 }

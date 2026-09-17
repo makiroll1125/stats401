@@ -16,16 +16,16 @@
         }
 
         .viz-panel {
-            margin: 20px 0 38px;
-            padding: 18px;
+            margin: 12px 0 38px;
+            padding: 0;
             background: #fafafa;
             border: 1px solid #e5e7eb;
             border-radius: 10px;
             overflow-x: auto;
         }
 
-        .viz-panel h3 {
-            margin: 0 0 6px;
+        section > h3 {
+            margin: 18px 0 6px;
         }
 
         .hint {
@@ -36,11 +36,10 @@
 
         .treemap-svg {
             display: block;
-            max-width: 100%;
+            width: 100%;
             height: auto;
             background: #fff;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
+            border-radius: 10px;
         }
 
         .country-cell {
@@ -53,29 +52,29 @@
         }
 
         .country-label {
-            font-size: 11px;
+            font-size: 14px;
             fill: #111827;
         }
 
         .country-value {
-            font-size: 10px;
+            font-size: 13px;
             fill: #374151;
         }
 
         .continent-label {
-            font-size: 13px;
+            font-size: 16px;
             font-weight: 700;
             fill: #111827;
         }
 
         .area-label {
-            font-size: 10px;
+            font-size: 13px;
             font-weight: 600;
             fill: #374151;
         }
 
         .legend-label {
-            font-size: 12px;
+            font-size: 14px;
             fill: #374151;
         }
 
@@ -83,6 +82,7 @@
             opacity: 0;
             z-index: 5;
             max-width: 260px;
+            font-size: 15px;
         }
 
         .error {
@@ -111,35 +111,30 @@
     <h2>Lab 6: Hierarchical GDP Treemaps</h2>
 
     <section class="intro">
-        <h2>Dataset description</h2>
+        <h2>Description</h2>
         <p>
-            This synthetic dataset organizes 27 countries into areas and
-            continents. Rectangle area represents GDP in billions of U.S.
-            dollars, while color represents whether GDP increased, was
-            unchanged, or decreased.
+            This dataset organizes 27 countries into areas and continents. Rectangle area represents GDP in billions of U.S. dollars, while color represents whether GDP increased, was unchanged, or decreased.
         </p>
     </section>
 
     <section>
         <h2>Squarified treemap</h2>
+        <h3>GDP by continent, area, and country</h3>
+        <p class="hint">
+            Hover a country for its hierarchy, GDP, and status. Rectangle area is proportional to a country's GDP.
+        </p>
         <div class="viz-panel">
-            <h3>GDP by continent, area, and country</h3>
-            <p class="hint">
-                Hover a country for its hierarchy, GDP, and status.
-                Rectangle area is proportional to GDP.
-            </p>
             <div id="squarify-treemap"></div>
         </div>
     </section>
 
     <section>
         <h2>Slice-and-dice treemap</h2>
+        <h3>GDP by continent, area, and country</h3>
+        <p class="hint">
+            The same data and encodings use alternating horizontal and vertical subdivision.
+        </p>
         <div class="viz-panel">
-            <h3>GDP by continent, area, and country</h3>
-            <p class="hint">
-                The same data and encodings use alternating horizontal
-                and vertical subdivision.
-            </p>
             <div id="slice-dice-treemap"></div>
         </div>
     </section>
@@ -147,7 +142,7 @@
     <section>
         <h2>Design description</h2>
         <p>
-            In both treemaps, rectangle area encodes GDP because area supports direct part-to-whole comparison within the world, continents, and subregions. A blue, gray, and orange palette encodes categorical attributes for status (Increase, Unchanged, and Decrease). Continent and area headers, borders, and country labels make the nested hierarchy visible, while tooltips provide exact values. The squarified layout creates compact rectangles with similar aspect ratios, so country labels and comparisons among countries are generally easier to read. The slice-and-dice layout alternates the split direction at each hierarchy level. Its aligned bands make parent-child membership clear but small-GDP countries can become too narrow with labels that do not fit.
+            In both treemaps, rectangle area encodes GDP because area supports direct part-to-whole comparison within the world, continents, and subregions. Green, gray, and red encodes categorical attributes for status (Increase, Unchanged, or Decrease). Continent and area headers, borders, and country labels make the nested hierarchy visible. Tooltips are provided for showing exact values. The squarified layout creates compact rectangles with similar aspect ratios, so country labels and comparisons among countries are generally easier to read. The slice-and-dice layout alternates the split direction at each hierarchy level. This makes parent-child membership clear but small-GDP countries can become too narrow with labels that do not fit.
         </p>
     </section>
 

@@ -1,27 +1,334 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Lab 7 | Animated Commercial Network</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .intro {
+            max-width: 820px;
+        }
 
-    <title>Lab 7</title>
+        .viz-panel {
+            margin: 20px 0 38px;
+            padding: 18px;
+            background: #fafafa;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
 
+        .viz-panel h3 {
+            margin: 0 0 6px;
+        }
+
+        .hint {
+            margin: 0 0 14px;
+            color: #4b5563;
+            font-size: 14px;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .controls button {
+            padding: 7px 14px;
+            border: 1px solid #9ca3af;
+            border-radius: 5px;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        .controls button:hover {
+            background: #e5e7eb;
+        }
+
+        .controls button:focus-visible,
+        #time-slider:focus-visible {
+            outline: 3px solid #93c5fd;
+            outline-offset: 2px;
+        }
+
+        #time-slider {
+            flex: 1 1 300px;
+            min-width: 220px;
+        }
+
+        #current-time {
+            min-width: 230px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(150px, 1fr));
+            gap: 8px;
+            margin: 0 0 14px;
+        }
+
+        .summary div {
+            padding: 9px 12px;
+            background: #eef2f7;
+            border-radius: 5px;
+            color: #374151;
+        }
+
+        .summary strong {
+            display: block;
+            margin-top: 2px;
+            color: #111827;
+            font-size: 18px;
+        }
+
+        .network-svg,
+        .timeline-svg,
+        .legend-svg {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            background: #fff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+        }
+
+        .legend-svg {
+            margin-top: 10px;
+        }
+
+        .network-link {
+            stroke-linecap: round;
+            cursor: pointer;
+        }
+
+        .network-node {
+            cursor: grab;
+        }
+
+        .network-node:active {
+            cursor: grabbing;
+        }
+
+        .company-label {
+            font-size: 11px;
+            font-weight: 600;
+            fill: #1f2937;
+            pointer-events: none;
+            paint-order: stroke;
+            stroke: #fff;
+            stroke-width: 3px;
+            stroke-linejoin: round;
+        }
+
+        .region-guide {
+            font-size: 13px;
+            font-weight: 700;
+            fill: #6b7280;
+            text-anchor: middle;
+        }
+
+        .axis text,
+        .legend-label,
+        .timeline-label {
+            font-size: 11px;
+            fill: #374151;
+        }
+
+        .legend-title,
+        .timeline-title {
+            font-size: 12px;
+            font-weight: 700;
+            fill: #1f2937;
+        }
+
+        .grid line {
+            stroke: #e5e7eb;
+        }
+
+        .grid path {
+            display: none;
+        }
+
+        .time-guide {
+            stroke: #dc2626;
+            stroke-width: 2;
+            stroke-dasharray: 5 4;
+            pointer-events: none;
+        }
+
+        .timeline-overlay {
+            fill: transparent;
+            cursor: crosshair;
+        }
+
+        .questions li {
+            margin-bottom: 14px;
+            padding-left: 4px;
+        }
+
+        .questions p {
+            margin: 4px 0 0;
+        }
+
+        .tooltip {
+            opacity: 0;
+            z-index: 5;
+            max-width: 280px;
+        }
+
+        .error {
+            color: #b91c1c;
+        }
+
+        @media (max-width: 650px) {
+            .summary {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <nav class="lab-nav">
+        <a href="../index.html">Home</a>
+        <a href="../lab1/index.html">Lab 1</a>
+        <a href="../lab2/index.html">Lab 2</a>
+        <a href="../lab3/index.html">Lab 3</a>
+        <a href="../lab4/index.html">Lab 4</a>
+        <a href="../lab5/index.html">Lab 5</a>
+        <a href="../lab6/index.html">Lab 6</a>
+        <a href="index.html">Lab 7</a>
+        <a href="../lab8/index.html">Lab 8</a>
+        <a href="../lab9/index.html">Lab 9</a>
+        <a href="../lab10/index.html">Lab 10</a>
+    </nav>
 
-    <h1>Lab 7</h1>
+    <h1>STATS 401: Data Acquisition and Visualization</h1>
+    <h3>Tobias Garcia</h3>
+    <h3>Net ID: tag41</h3>
+    <h2>Lab 7: Animated Temporal Commercial Network</h2>
 
-    <p>
-        Lab 7 will be added here.
-    </p>
+    <section class="intro">
+        <h2>Description</h2>
+        <p>
+            This visualization records 60 days of transactions among 12 companies. Each node is a company and each (undirected) link is a relationship active on the selected day.
+        </p>
+    </section>
 
-    <a href="../index.html">
-        Back to home
-    </a>
+    <section>
+        <h2>Temporal node-link visualization</h2>
 
+        <div class="viz-panel">
+            <h3>Daily commercial relationships</h3>
+            <p class="hint">
+                Play the animation or drag the slider to inspect a day. Hover nodes and links for details.
+            </p>
+
+            <div class="controls">
+                <button id="play" type="button">Play</button>
+                <button id="pause" type="button">Pause</button>
+                <button id="reset" type="button">Reset</button>
+                <label for="time-slider">Day</label>
+                <input
+                    type="range"
+                    id="time-slider"
+                    min="1"
+                    max="60"
+                    value="1">
+                <output id="current-time" for="time-slider">
+                    Day 1
+                </output>
+            </div>
+
+            <div class="summary" aria-live="polite">
+                <div>
+                    Active companies
+                    <strong id="active-companies">0</strong>
+                </div>
+                <div>
+                    Active relationships
+                    <strong id="active-links">0</strong>
+                </div>
+                <div>
+                    Total transaction value
+                    <strong id="total-value">$0</strong>
+                </div>
+            </div>
+
+            <div id="network"></div>
+            <div id="network-legend"></div>
+        </div>
+
+        <h3>Design description</h3>
+        <p>
+            Node fill identifies sector, shape identifies region, and area shows current transaction volume. Thin dashed guides separate the three region zones, while inactive companies remain faint but present. Link color identifies transaction type, width shows amount, and opacity shows transaction count.
+        </p>
+    </section>
+
+    <section>
+        <h2>Static time series visualization</h2>
+
+        <div class="viz-panel">
+            <h3>Description</h3>
+            <p class="hint">
+                The fixed overview shows all 60 days at once for visualization purposes. Not for the assignment.
+            </p>
+            <div id="timeline"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Temporal network questions</h2>
+
+        <ol class="questions">
+            <li>
+                <strong>How does overall network connectivity change across the 60 days?</strong>
+                <p>
+                    Connectivity seem to cycle between sparse and busy days. As time increases, active relationships appears to rise from 6-10 to 8-12.
+                </p>
+            </li>
+            <li>
+                <strong>Which companies become more central or commercially active over time?</strong>
+                <p>
+                    Fusion Electronics, Keystone Materials, and Granite Wholesale appear to becomes more prominent over time. Delta and Ion Systems become much more noticeably active particularly near the end.
+                </p>
+            </li>
+            <li>
+                <strong>Are there periods when the network consists of relatively separate clusters?</strong>
+                <p>
+                    Yes. It appears for the first ~20 days, most companies cluster into 3 or 4 separate, small groups. Around day 20, most daily relationships consist of two or three larger groups.
+                </p>
+            </li>
+            <li>
+                <strong>Which commercial relationships appear, disappear, or become stronger over time?</strong>
+                <p>
+                    Early relationships repeatedly alternate by day. Fusion's links to Granite and Juniper appear in the middle period, followed by stronger Cedar-related and Ion-related relationships after day ~40.
+                </p>
+            </li>
+            <li>
+                <strong>Does the network become more or less cross-regional over time?</strong>
+                <p>
+                    It appears to become more cross-regional with cross-region links
+                    increasing much more noticeably around day ~40.
+                </p>
+            </li>
+        </ol>
+    </section>
+
+    <div id="tooltip"
+         class="tooltip"
+         role="status"
+         aria-live="polite"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="lab7.js"></script>
 </body>
 
 </html>
