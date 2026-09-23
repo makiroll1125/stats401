@@ -1,0 +1,246 @@
+{
+  "title": "Bulletin of Duke Kunshan University Undergraduate Instruction",
+  "academic_year": "2021-2022",
+  "source": "Official Duke Kunshan University admissions website",
+  "source_url": "https://dku-web-admissions.s3.cn-north-1.amazonaws.com.cn/dkumain/files/V2021-22_DKU_UG_Bulletin.pdf",
+  "accessed": "2026-09-23",
+  "raw_passages": 3686,
+  "clean_passages": 1333,
+  "average_words": 66.7,
+  "formal_sections": 1142,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "umap": {
+    "n_neighbors": 15,
+    "min_dist": 0.15,
+    "metric": "cosine",
+    "random_state": 401
+  },
+  "clustering": "K-means on normalized 384-dimensional embeddings",
+  "clusters": 8,
+  "cluster_terms": {
+    "0": [
+      "media",
+      "course",
+      "digital",
+      "cultural",
+      "students",
+      "art",
+      "culture",
+      "writing",
+      "arts",
+      "history",
+      "film",
+      "world"
+    ],
+    "1": [
+      "course",
+      "data",
+      "science",
+      "topics",
+      "systems",
+      "molecular",
+      "include",
+      "materials",
+      "properties",
+      "applications",
+      "chemistry",
+      "models"
+    ],
+    "2": [
+      "student",
+      "term",
+      "students",
+      "academic",
+      "grade",
+      "classes",
+      "absence",
+      "leave",
+      "undergraduate",
+      "leave absence",
+      "university",
+      "underload"
+    ],
+    "3": [
+      "credit",
+      "courses",
+      "placement",
+      "credits",
+      "advanced placement",
+      "placement basis",
+      "basis college",
+      "basis",
+      "board",
+      "advanced",
+      "college board",
+      "credit advanced"
+    ],
+    "4": [
+      "chinese",
+      "china",
+      "course",
+      "asia",
+      "world",
+      "students",
+      "cultural",
+      "global",
+      "culture",
+      "social",
+      "history",
+      "hist"
+    ],
+    "5": [
+      "political",
+      "course",
+      "social",
+      "policy",
+      "world",
+      "health",
+      "global",
+      "human",
+      "economic",
+      "public",
+      "examines",
+      "development"
+    ],
+    "6": [
+      "duke",
+      "university",
+      "kunshan",
+      "duke kunshan",
+      "kunshan university",
+      "students",
+      "dku",
+      "credit",
+      "courses",
+      "credits",
+      "duke university",
+      "student"
+    ],
+    "7": [
+      "students",
+      "course",
+      "skills",
+      "student",
+      "academic",
+      "community",
+      "learning",
+      "work",
+      "language",
+      "learn",
+      "knowledge",
+      "seminar"
+    ]
+  },
+  "top_terms": [
+    {
+      "term": "students",
+      "score": 0.03679
+    },
+    {
+      "term": "course",
+      "score": 0.03537
+    },
+    {
+      "term": "university",
+      "score": 0.01716
+    },
+    {
+      "term": "courses",
+      "score": 0.01701
+    },
+    {
+      "term": "student",
+      "score": 0.01692
+    },
+    {
+      "term": "duke",
+      "score": 0.0165
+    },
+    {
+      "term": "chinese",
+      "score": 0.01534
+    },
+    {
+      "term": "credit",
+      "score": 0.0151
+    },
+    {
+      "term": "academic",
+      "score": 0.01469
+    },
+    {
+      "term": "term",
+      "score": 0.01422
+    },
+    {
+      "term": "social",
+      "score": 0.01385
+    },
+    {
+      "term": "world",
+      "score": 0.01362
+    },
+    {
+      "term": "china",
+      "score": 0.0128
+    },
+    {
+      "term": "kunshan",
+      "score": 0.01241
+    },
+    {
+      "term": "political",
+      "score": 0.01199
+    }
+  ],
+  "top_sections": [
+    {
+      "section": "Course Descriptions",
+      "count": 718
+    },
+    {
+      "section": "Majors (listed in alphabetical order)",
+      "count": 136
+    },
+    {
+      "section": "Degree Requirements",
+      "count": 43
+    },
+    {
+      "section": "Grading and Grade Requirements",
+      "count": 26
+    },
+    {
+      "section": "Undergraduate Course Load",
+      "count": 22
+    },
+    {
+      "section": "Office of Global Education and Study Away",
+      "count": 22
+    },
+    {
+      "section": "Part 11: Academic Calendar 2021-22",
+      "count": 21
+    },
+    {
+      "section": "Estimated Expenses",
+      "count": 20
+    },
+    {
+      "section": "Entrance Credit and Placement",
+      "count": 19
+    },
+    {
+      "section": "Changes in Status",
+      "count": 17
+    },
+    {
+      "section": "Academic Warning, Probation, and Suspension for Students in the Classes of 2022-2024",
+      "count": 14
+    },
+    {
+      "section": "Refund",
+      "count": 12
+    }
+  ]
+}

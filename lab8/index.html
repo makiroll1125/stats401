@@ -1,27 +1,398 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 8 | Mapping the DKU Bulletin</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        :root {
+            --ink: #172033;
+            --muted: #64748b;
+            --line: #dbe3ee;
+            --paper: #ffffff;
+            --wash: #f5f7fb;
+            --accent: #243f72;
+        }
 
-    <title>Lab 8</title>
+        main {
+            max-width: 1240px;
+            margin: 0 auto;
+        }
 
+        .hero {
+            margin: 24px 0;
+            padding: 34px;
+            color: white;
+            background: linear-gradient(125deg, #172033, #244b77 65%, #277b87);
+            border-radius: 18px;
+            box-shadow: 0 16px 35px rgba(23, 32, 51, 0.16);
+        }
+
+        .eyebrow {
+            margin: 0 0 8px;
+            color: #a9e4e3;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            max-width: 800px;
+            margin: 0;
+            font-size: clamp(30px, 5vw, 55px);
+            line-height: 1.03;
+        }
+
+        .hero p:last-child {
+            max-width: 760px;
+            margin: 18px 0 0;
+            color: #dceaf4;
+            line-height: 1.6;
+        }
+
+        .panel {
+            margin: 18px 0;
+            padding: 22px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            box-shadow: 0 6px 18px rgba(23, 32, 51, 0.05);
+        }
+
+        .panel h2,
+        .panel h3 {
+            margin-top: 0;
+        }
+
+        .source-note,
+        .hint,
+        .status {
+            color: var(--muted);
+            line-height: 1.55;
+        }
+
+        .source-note a {
+            color: #176b78;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(130px, 1fr));
+            gap: 12px;
+        }
+
+        .metric {
+            padding: 16px;
+            background: #f7f9fc;
+            border-left: 4px solid #2a7f87;
+            border-right: 1px solid #2a7f87;
+            border-top: 1px solid #2a7f87;
+            border-bottom: 1px solid #2a7f87;
+
+            border-radius: 8px;
+        }
+
+        .metric span {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .metric strong {
+            display: block;
+            margin-top: 5px;
+            font-size: 25px;
+        }
+
+        .overview-grid,
+        .explorer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: minmax(220px, 2fr) 1fr 1fr auto;
+            gap: 10px;
+            margin: 16px 0;
+        }
+
+        .controls input,
+        .controls select,
+        .controls button {
+            min-height: 42px;
+            padding: 8px 11px;
+            border: 1px solid #b8c4d4;
+            border-radius: 7px;
+            background: white;
+            color: var(--ink);
+        }
+
+        .controls button {
+            color: white;
+            background: var(--accent);
+            border-color: var(--accent);
+            cursor: pointer;
+        }
+
+        svg {
+            display: block;
+            width: 100%;
+            height: auto;
+            overflow: visible;
+        }
+
+        .chart-frame {
+            min-height: 420px;
+            background: #fbfcfe;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 14px;
+            margin: 12px 0 0;
+            font-size: 12px;
+        }
+
+        .legend button {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 2px;
+            color: #344054;
+            background: none;
+            border: 0;
+            cursor: pointer;
+        }
+
+        .swatch {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .details {
+            min-height: 185px;
+            padding: 18px;
+            background: #f7f9fc;
+            border-radius: 10px;
+        }
+
+        .details h3 {
+            margin-bottom: 5px;
+        }
+
+        .details .meta {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .details .passage {
+            line-height: 1.58;
+        }
+
+        .neighbor-list button {
+            display: block;
+            width: 100%;
+            margin: 7px 0;
+            padding: 9px;
+            overflow: hidden;
+            text-align: left;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .tooltip {
+            position: fixed;
+            z-index: 10;
+            max-width: 310px;
+            padding: 10px 12px;
+            color: white;
+            background: rgba(18, 26, 43, 0.94);
+            border-radius: 7px;
+            pointer-events: none;
+            opacity: 0;
+            font-size: 12px;
+            line-height: 1.45;
+        }
+
+        .matrix-cell,
+        .point {
+            cursor: pointer;
+        }
+
+        .axis text {
+            fill: #536175;
+            font-size: 10px;
+        }
+
+        .findings li {
+            margin: 0 0 14px;
+            line-height: 1.55;
+        }
+
+        .method {
+            columns: 2;
+            column-gap: 34px;
+            line-height: 1.65;
+        }
+
+        .error {
+            padding: 18px;
+            color: #991b1b;
+        }
+
+        @media (max-width: 850px) {
+            .metrics,
+            .overview-grid,
+            .explorer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .controls {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .method {
+                columns: 1;
+            }
+        }
+
+        @media (max-width: 560px) {
+            main {
+                padding: 0 12px 40px;
+            }
+
+            .hero {
+                padding: 24px;
+            }
+
+            .metrics,
+            .overview-grid,
+            .explorer-grid,
+            .controls {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <nav class="lab-nav">
+        <a href="../index.html">Home</a>
+        <a href="../lab1/index.html">Lab 1</a>
+        <a href="../lab2/index.html">Lab 2</a>
+        <a href="../lab3/index.html">Lab 3</a>
+        <a href="../lab4/index.html">Lab 4</a>
+        <a href="../lab5/index.html">Lab 5</a>
+        <a href="../lab6/index.html">Lab 6</a>
+        <a href="../lab7/index.html">Lab 7</a>
+        <a href="index.html">Lab 8</a>
+        <a href="../lab9/index.html">Lab 9</a>
+        <a href="../lab10/index.html">Lab 10</a>
+    </nav>
 
-    <h1>Lab 8</h1>
+    <main>
+    <h1>STATS 401: Data Acquisition and Visualization</h1>
+    <h3>Tobias Garcia</h3>
+    <h3>Net ID: tag41</h3>
+    <h2>Lab 8: Web Text Data and Visualization: Exploring a Large Bulletin</h2>
 
-    <p>
-        Lab 8 will be added here.
-    </p>
+        <section class="panel">
+            <h2>Corpus preparation</h2>
+            <p class="source-note">
+                <em>Bulletin of Duke Kunshan University Undergraduate Instruction</em>, academic year 2021 - 2022. Official DKU source, accessed September 23, 2026:
+                <a href="https://dku-web-admissions.s3.cn-north-1.amazonaws.com.cn/dkumain/files/V2021-22_DKU_UG_Bulletin.pdf">official source</a>.
+            </p>
+            <div id="metrics" class="metrics" aria-live="polite"></div>
+        </section>
 
-    <a href="../index.html">
-        Back to home
-    </a>
+        <section class="overview-grid">
+            <article class="panel">
+                <h2>Top meaningful terms</h2>
+                <p class="hint">Corpus-wide mean TF-IDF; common English stop words removed.</p>
+                <div id="terms-chart"></div>
+            </article>
+            <article class="panel">
+                <h2>Passages by section</h2>
+                <p class="hint">Passage counts preserve the bulletin's top-level structure.</p>
+                <div id="sections-chart"></div>
+            </article>
+        </section>
 
+        <section class="panel">
+            <h2>Semantic embedding map</h2>
+            <p class="hint">
+                Position reflects semantic similarity, color shows topic, and point area shows passage length. Search or filter, scroll to zoom, drag to pan, and click a point to reveal its five nearest semantic neighbors.
+            </p>
+            <div class="controls">
+                <input id="search" type="search" placeholder="Search credit, graduation, registration…" aria-label="Search passages">
+                <select id="topic-filter" aria-label="Filter by topic"><option value="all">All topics</option></select>
+                <select id="section-filter" aria-label="Filter by section"><option value="all">All sections</option></select>
+                <button id="reset" type="button">Reset view</button>
+            </div>
+            <p id="status" class="status" aria-live="polite"></p>
+            <div id="topic-legend" class="legend"></div>
+            <div class="explorer-grid">
+                <div id="map" class="chart-frame"></div>
+                <aside id="details" class="details">
+                    <h3>Select a passage</h3>
+                    <p>Click any point to read its text, locate it in the formal hierarchy, and inspect nearest neighbors.</p>
+                </aside>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Topic × section matrix</h2>
+            <p class="hint">
+                Cell color shows the within-chapter proportion; the printed number is the passage count. Hover for details. Click a cell to highlight the same passages in the map; selecting a point outlines its cell.
+            </p>
+            <div id="matrix"></div>
+        </section>
+
+        <section class="panel findings">
+            <h2>Findings from the bulletin</h2>
+            <ol>
+                <li><strong>What are the major topics?</strong> The eight major topics are arts/media, STEM/data, academic procedures, credits/degree requirements, China/Asia, society/policy/global health, university administration, and learning/community.</li>
+                <li><strong>Which topics appear across multiple formal sections?</strong> University and administration appears in 11 of 12 chapters, while learning/community appears in eight. Credits and academic procedures each span six chapters.</li>
+                <li><strong>Which formal sections contain the most semantically diverse content?</strong> Part 10, Majors and Courses, contains seven topics and has the highest topic entropy. Admission & Financial Aid and Liberal Arts Education follow at 1.78 and 1.76 bits despite having far fewer passages.</li>
+                <li><strong>Which passages from different sections are semantically similar?</strong> The Part 1 welcome on page 10 is a nearest neighbor of the Campus Programs description on page 80 since both frame DKU as a diverse intellectual community.</li>
+                <li><strong>Which passages appear unusual relative to their formal section?</strong> Several entries inside Course Descriptions sit in the credits cluster rather than a disciplinary cluster. For example, the page 243 Chinese Society and Culture requirement says its credits "do not count toward the 136-credit requirement".</li>
+                <li><strong>Search for credit, graduation, registration, or academic integrity. Does the concept occur in one semantic region or across several topics?</strong> “Credit” returns 879 passages across all eight topics. “Graduation” spans three topics with 32 passages; “registration” spans three topics with 15 passages; “academic integrity” spans three topics with 8 passages. These all occur across several topics.</li>
+            </ol>
+        </section>
+
+        <section class="panel">
+            <h2>Design description and methods</h2>
+            <div class="method">
+                <p>
+                    The official bulletin was extracted with PyMuPDF instead of pandas. PDF bookmarks provided the formal chapter, section, and subsection hierarchy, page blocks were cleaned of repeated page numbers, glyphs, whitespace, duplicates, and very short fragments. Long paragraphs were split at sentence boundaries into blocks of at most 135 words. This produced 1,333 clean passages from 3,686 raw blocks.
+                </p>
+                <p>
+                    Each passage was encoded with <code>sentence-transformers/all-MiniLM-L6-v2</code>, producing a normalized 384-dimensional semantic vector. UMAP projected those vectors to two dimensions using 15 neighbors, minimum distance 0.15, cosine distance, and random state 401 as in the tutorial part of the lab. Kmeans clustered the original embeddings into eight groups. I inspected each cluster's highest TF-IDF terms and passages nearest its centroid then assigned the current topic labels.
+                </p>
+                <p>
+                    In the map, position represents the UMAP projection, hue represents topic, and area represents word count. Opacity communicates current search and filter state. Zoom and pan expose dense neighborhoods, while clicking displays the complete passage and its five cosine-nearest passages. The matrix reconnects topics to the bulletin's formal chapters: rows are chapters, columns are topics, and saturation is the topic's proportion within that chapter. Coordinated interaction supports exploration by allowing users to click a matrix cell to highlights its passages on the map or select a map point to outline the corresponding cell.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <div id="tooltip" class="tooltip" role="status"></div>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="lab8.js"></script>
 </body>
-
 </html>
