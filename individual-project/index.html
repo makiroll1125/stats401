@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142d36">
+  <title>Individual Project | STATS 401</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="vendor/d3.v7.min.js" defer></script>
+  <script src="main.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <a class="wordmark" href="../index.html">STATS <strong>401</strong> <span>/ Individual project</span></a>
+  <nav aria-label="Project sections"><a href="#original">Original</a><a href="#critique">Critique</a><a href="#redesign">Explore the redesign <span aria-hidden="true">↗</span></a></nav>
+</header>
+<main id="main">
+  <section class="hero">
+    <p class="eyebrow"><span class="small-orbit" aria-hidden="true"></span> Gravitational Waves · Black Holes · Astronomy</p>
+    <h1>An improvement on <br><div class="og-title">Masses in the Stellar Graveyard</div></h1>
+    <div class="hero-bottom">
+      <p>This project enhances a popular visualization of black holes and neutron stars, making them easier to compare, question, and explore.</p>
+      <a class="primary-link" href="#redesign">Explore the D3 redesign <span aria-hidden="true">↓</span></a>
+    </div>
+    <div class="hero-meta"><span>1 / Original visualization</span><span>2 / Analysis of original visualization</span><span>3 / Critique of original visualization</span><span>4 / New Redesign</span><span>5 / Explanation of redesign</span></div>
+  </section>
+
+  <section id="original" class="chapter">
+    <div class="section-heading"><p class="eyebrow">Part 1 / Original visualization</p><h2>Masses in the Stellar Graveyard</h2></div>
+    <div class="intro-grid">
+      <p>Created by Aaron Geller et al., this interactive visualization brings together mass estimates for black holes and neutron stars inferred from <strong>gravitational waves (GW)</strong> and <strong>electromagnetic observations (EM)</strong>. GW events can contribute two component masses and a remnant estimate; EM entries describe individual compact objects.</p>
+      <div class="source-card"><span class="eyebrow">Original work</span><a href="https://ligo.northwestern.edu/media/mass-plot/index.html">Open the live visualization ↗</a><a href="https://github.com/ageller/LIGO-Virgo-Mass-Plot_v2.0">Source code &amp; contributors ↗</a><span>Northwestern · LIGO–Virgo–KAGRA</span></div>
+    </div>
+    <figure class="original-figure">
+      <div class="gallery-controls" role="group" aria-label="Original visualization screenshots">
+        <button class="active" aria-pressed="true" data-view="1">1 Standard</button>
+        <button aria-pressed="false" data-view="2">2 Circle pack</button>
+        <button aria-pressed="false" data-view="3">3 Circle links</button>
+        <button aria-pressed="false" data-view="4">4 Nodes</button>
+      </div>
+      <a id="original-image-link" href="original-viz-view1.png" target="_blank" rel="noopener"><img id="original-image" src="original-viz-view1.png" width="2559" height="1430" alt="Original standard view: colored compact-object masses on a logarithmic vertical axis, with many arrows joining merger components to remnants."></a>
+      <figcaption><span id="original-caption">The standard view preserves a mass axis, but the many merger arrows compete with individual measurements.</span> Supplied screenshots of the original; select an image to open it at full resolution.</figcaption>
+    </figure>
+    <p class="section-note">The interface additionally offers separate GW and EM sorting, category toggles, point-size controls, search across the four views.</p>
+  </section>
+
+  <section id="analysis" class="chapter">
+    <div class="section-heading"><p class="eyebrow">Part 2 / Message, audience &amp; tasks</p><h2>Analysis of Original Visualization</h2></div>
+    <div class="analysis-grid">
+      <article><span class="card-number">1</span><h3>Message</h3><p>The visualization intends to portray the mass range of stellar remnants is broad and different observing methods (gravitational waves vs. electromagnetic observations) reveal different parts of it. </p><p>The first view communicates mass patterns while highlighting a potential mass gap in the range of 2.5-5 solar masses where very few of these astronomical objects are found.</p></article>
+      <article><span class="card-number">2</span><h3>Audience</h3><p>Astronomy/astrophysics students, educators, researchers, and interested members of the public are the audience of the original visualization.</p><p>The expressive title and vivid marks invite exploration, however, terms such as chirp mass, effective spin, and SNR assume background knowledge of the viewer.</p></article>
+      <article><span class="card-number">3</span><h3>Tasks</h3><ul><li>Compare mass ranges across categories.</li><li>Find unusually light or heavy objects.</li><li>Locate a named event and compare its components with its remnant.</li><li>Inspect estimates and uncertainty near the proposed mass gap.</li></ul></article>
+    </div>
+  </section>
+
+  <section id="critique" class="chapter">
+    <div class="section-heading"><p class="eyebrow">Part 3 / Design critique</p><h2>Critique of Original Visualization.</h2></div>
+    <div class="strengths">
+      <p class="eyebrow">What works</p>
+      <article><h3>The shared scale</h3><p>The standard view puts all masses on one logarithmic axis, making a large range visible. Color and a prominent legend distinguish the four method/type combinations.</p></article>
+      <article><h3>Relationship visualization</h3><p>Merger arrows communicate a relationship between components and remnants. Search, filtering, and tooltips let viewers locate an event and access detail without labeling every point.</p></article>
+    </div>
+    <div class="table-scroll critique-table-wrap">
+      <table class="critique-table">
+        <caption class="sr-only">Five design weaknesses, their consequences, and proposed improvements</caption>
+        <thead><tr><th scope="col">What's the problem</th><th scope="col">Why it matters</th><th scope="col">How it can be improved</th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><span>1</span> Layouts without a common mass axis</th><td>The three alternative views use a force simulation even though spatial proximity doesn't encode a meaningful quantitative variable. As a result, positions are unstable and difficult to compare across sessions, the layouts require computation before settling, and dense links create the classic "hairball" problem.</td><td>Keep mass on a fixed horizontal axis and use deterministic packing only to separate overlapping marks vertically without simulation. These three views don't support the user tasks that reveal the intended astrophysical relationships, so we can replace them entirely.</td></tr>
+          <tr><th scope="row"><span>2</span> Too many sparse relationships</th><td>In dense node-link views, crossing links obscure the marks and make any single merger hard to trace. Even the standard view can suffer from too many similar arrows.</td><td>Separate component (primary and secondary) and remnant (final) rows, then highlight one event across them. Then, shows its measurements together in a dedicated detail panel. Tasks to inspect a specific event greatly benefit from this.</td></tr>
+          <tr><th scope="row"><span>3</span> Mass encoding is redudant</th><td>The standard view represents mass through both position and point size. Large marks draw attention and occupy more space while still depending on the axis. Adjustable sizes further enhance the visual emphasis.</td><td>Use equal-size marks within each row and compare mass through an aligned position. Use the original colors for object categories and row labels and shapes for measurement roles. This way, the mass measurement uses the dominant spatial encoding.</td></tr>
+          <tr><th scope="row"><span>4</span> Too many choices before a task</th><td>Decorative sorting modes such as Peaked, Valley, and Diamond change the overall shape without making scientific comparison easier. The amount of controls unnecessarily increases the effort needed to find a useful view.</td><td>Offer controls tied to tasks: search an object, filter a method, inspect low masses, or sort exact values. Includes a few named examples to give first-time viewers a starting point.</td></tr>
+          <tr><th scope="row"><span>5</span> Estimates are actually uncertain</th><td>The current view hides uncertainty estimates. The logarithmic scale emphasizes larger uncertainty values over small ones. Detection methods also sample different populations.</td><td>Show reported intervals in the selected-object view and table using a linear scale. Label the mass gap (~2.5-5 M☉) as a reference and distinguish GW credible intervals from heterogeneous EM bounds.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="redesign" class="chapter explorer-section">
+    <div class="section-heading"><p class="eyebrow">Part 4 / Redesign</p><h2>Redesign of Masses in the Stellar Graveyard</h2><p>Compare the observed mass ranges or select an object to see its details.</p></div>
+    <div class="explorer">
+      <div class="explorer-top"><div><p class="eyebrow">The mass atlas</p><h3>Stellar Remnants</h3></div><span class="snapshot-badge">Frozen snapshot · GWTC-1 to GWTC-3</span></div>
+      <div class="stats-strip" aria-label="Dataset scope"><div><strong>90</strong><span>GW merger events</span></div><div><strong>112</strong><span>EM objects retained</span></div><div><strong>382</strong><span>mass entries shown</span></div><p>1 M☉ = the mass of our Sun.<br> GW masses are in the source frame.</p></div>
+      <form id="controls" class="controls" aria-label="Filter the mass atlas">
+        <label class="search-label">Find an event or object<input id="search" type="search" placeholder="Try GW190814 or Cygnus" autocomplete="off"></label>
+        <label>Observing method<select id="method"><option value="all">GW + EM</option><option value="GW">Gravitational waves</option><option value="EM">Electromagnetic</option></select></label>
+        <label>Mass range<select id="range"><option value="all">All masses</option><option value="low">Low masses: ≤ 5 M☉</option></select></label>
+        <label>Axis scale<select id="scale"><option value="log">Logarithmic</option><option value="linear">Linear</option></select></label>
+        <button type="button" id="reset" class="text-button">Reset</button>
+      </form>
+      <div class="encoding-key">
+        <p class="eyebrow">Color = object category · Row &amp; shape = measurement role</p>
+        <ul id="object-legend" class="object-legend" aria-label="Object category colors from the original visualization"></ul>
+        <p class="legend-note">GW colors follow the original mass-based convention: below 3 M☉ is orange (neutron star); 3 M☉ and above is blue (black hole). Objects within 2.5-5 M☉ are ambiguous in their identity, so color does not confirm physical identity within the GW rows in the mass gap.</p>
+      </div>
+      <div class="chart-toolbar"><p id="result-count" role="status" aria-live="polite">Loading the local dataset…</p><label class="checkbox-label"><input id="gap" type="checkbox" checked> Show mass gap</label></div>
+      <div id="load-error" class="error-box" hidden role="alert"></div>
+      <p class="mobile-scroll-hint">Swipe the chart horizontally to compare the full mass range ?</p>
+      <div class="chart-scroll" tabindex="0" role="region" aria-label="Mass overview chart; scroll horizontally on small screens">
+        <svg id="overview" role="img" aria-label="Compact-object mass estimates by observing method, object type, and measurement role" aria-describedby="chart-description"><desc id="chart-description">Five rows share a mass axis. Colors follow the original object categories; rows and shapes identify measurement roles. Select objects using the searchable table below for accessible details.</desc></svg>
+      </div>
+      <p id="empty-state" class="empty-state" hidden>No measurements match these filters. Clear the search or reset the atlas.</p>
+      <div class="chart-reading"><p id="scale-explanation">Equal distances on the log axis represent equal ratios.</p><p>Vertical offsets separate overlapping marks; they encode no quantity. All rows share the same axis. Select a point, or use the table below.</p></div>
+      <div class="guided-questions"><span class="eyebrow">Start with a question</span><button type="button" data-example="GW150914">A first detection ↗</button><button type="button" data-example="GW190814">Inside the reference band ↗</button><button type="button" data-example="GW190521">A heavy remnant ↗</button><button type="button" data-example="GW170817">A neutron-star merger ↗</button></div>
+      <div class="detail-panel" id="detail-panel">
+        <div class="detail-copy"><p class="eyebrow">Selected event / object</p><h3 id="detail-name">GW150914</h3><p id="detail-context"></p><p id="detail-note"></p><a id="detail-source" href="https://gwosc.org/eventapi/html/GWTC-1-confident/GW150914/v3/">View source measurement ↗</a></div>
+        <div class="detail-viz"><p class="detail-scale-note">Detail uses a linear local scale for easier interval comparison. The range adapts to the selected object or event.</p><svg id="detail-chart" role="img" aria-label="Selected measurements with reported mass intervals"></svg><div id="detail-values"></div><p class="fine-print" id="interval-note"></p></div>
+      </div>
+      <div class="data-heading"><div><p class="eyebrow">Read the values</p><h3>Mass entries in this view</h3></div><label>Sort by<select id="sort"><option value="mass-desc">Mass: high to low</option><option value="mass-asc">Mass: low to high</option><option value="name">Object name</option></select></label></div>
+      <div class="table-scroll">
+        <table id="data-table"><caption class="sr-only">Filtered mass entries, including flagged remnant values. Select a name to inspect all measurements for that event.</caption><thead><tr><th scope="col">Event / object</th><th scope="col">Measurement</th><th scope="col">Mass (M☉)</th><th scope="col">Reported interval (M☉)</th></tr></thead><tbody id="data-body"></tbody></table>
+      </div>
+      <div class="pagination"><p id="page-status" aria-live="polite"></p><div><button type="button" id="previous">← Previous</button><button type="button" id="next">Next →</button></div></div>
+      <div class="dataset-footer"><span>Source: GWOSC catalog summaries &amp; the original EM compilation</span><a href="data/masses.json" download>Download plotted data (JSON) ↓</a></div>
+    </div>
+    <noscript><p class="error-box">JavaScript is required for the D3 explorer. The analysis remains readable, and the <a href="data/masses.json">local dataset is available here</a>.</p></noscript>
+    <aside class="methodology">
+      <h3>What is in this dataset</h3>
+      <p>This is a reproducible teaching snapshot, <strong>not the latest catalog or a population census</strong>. GW data come from the original repository’s copy of GWOSC summaries, restricted to GWTC-1-confident, GWTC-2.1-confident, and GWTC-3-confident: 90 distinct events, 180 component estimates, and 90 remnant entries (88 estimates with reported intervals and 2 flagged values). The 112 EM entries retain the original black-hole/neutron-star labels. GW rows identify measurement roles while colors preserve the original black-hole/neutron-star display convention. This convention uses a 3 M☉ threshold; the source also flags GW masses strictly between 2.5 and 5 M☉ as ambiguous. These are visual categories rather than confirmed physical classifications.</p>
+      <p>Processing retains one record per GW event name, prioritizing a later included catalog and then version. Any missing values are not replaced with zero. Both ambiguous remnant entries are retained using the original plot’s representation: GW170817 has a source-listed value of 2.8 M☉ without reported bounds; GW190425 uses the total binary mass of 3.4 M☉ as a position proxy because its final mass is missing. Hollow diamonds identify these two cases. Neither receives a remnant uncertainty whisker. The EM compilation contains 126 entries; 14 with a nonzero <code>special</code> flag are excluded to avoid mixing flagged cases with ordinary estimates. Four reversed EM bound pairs are reordered. These choices change coverage and are documented in the download’s metadata.</p>
+      <p>GW whiskers show reported 90% credible intervals. EM whiskers show the compilation’s published bounds, whose confidence conventions vary; their widths should not be compared as if they were the same statistical quantity. Different detection sensitivities and selection criteria prevent point counts from establishing how common these objects are in the universe.</p>
+      <p class="fine-print">Pinned original repository: <a href="https://github.com/ageller/LIGO-Virgo-Mass-Plot_v2.0/tree/5912f3355382df1b92e3b3bf1152792d8e16c116">5912f335</a> · <a href="https://gwosc.org/eventapi/html/">GWOSC catalogs</a> · <a href="https://gwosc.org/api/">API documentation</a> · <a href="https://github.com/ageller/LIGO-Virgo-Mass-Plot_v2.0/blob/5912f3355382df1b92e3b3bf1152792d8e16c116/src/data/README.md">EM source notes</a> · <a href="prepare_data.py">Reproduction script</a>. Data retrieved September 25, 2026. GWOSC data: CC BY 4.0; original project: MIT. This work uses data provided by the Gravitational Wave Open Science Center, a service of LIGO Laboratory, the LIGO Scientific Collaboration, the Virgo Collaboration, and KAGRA.</p>
+    </aside>
+  </section>
+
+  <section id="decisions" class="chapter">
+    <div class="section-heading"><p class="eyebrow">Part 5 / Design rationale</p><h2>Explanation of redesign.</h2></div>
+    <div class="decisions-grid">
+      <article><span class="card-number">1</span><h3>Mass measurement uses dominant spatial encoding</h3><p>I replaced force layouts and variable-size circles with aligned mass positions and equal-size marks within labeled rows. This addresses arbitrary proximity and competing size encodings. A fixed axis makes ranges and outliers easier to compare; filtering hides points without repacking the remaining ones. The original blue, orange, magenta, and yellow-green palette preserves object categories, independently of the rows and shapes that encode measurement roles.</p></article>
+      <article><span class="card-number">2</span><h3>Relationships are inspected when chosen</h3><p>I replaced the web of links with coordinated highlighting and a selected-event interval plot. This addresses crossing lines while retaining the component-remnant relationship. Selecting GW150914, for example, brings its three measurements together without tracing arrows through the full catalog.</p></article>
+      <article><span class="card-number">2</span><h3>Retained uncertainty estimates</h3><p>I added labeled intervals, source links, exact values, and reframed the mass gap. This addresses the uncertainty estimates not originally visualized. For GW190814, the secondary estimate is 2.6 M☉ with reported bounds of 2.5-2.7 M☉, so mass alone cannot the object’s identity.</p></article>
+      <article><span class="card-number">4</span><h3>Controls align the user's task</h3><p>Instead of creating decorative arrangements which aren't useful for scientific analysis, I added toggles for search, method filtering, a low-mass range, and value sorting. Logarithmic and linear overview scales support ratio and difference comparisons respectively depending on the user's preference. The detail plot always uses a labeled local linear scale for interval comparison with a range that adapts to the selected event.</p></article>
+    </div>
+    <div class="comparison">
+      <div><p class="eyebrow">Before → After</p><h3>Less merger tracing for more population comparison.</h3></div>
+      <div><p>The original offers an expressive, comprehensive overview of the stellar graveyard. The redesign makes three tasks more direct: comparing ranges on a common axis, locating a named event, and judging a mass estimate alongside its uncertainty. Persistent labels make observing methods and merger roles explicit, while the table supports precise comparisons that packed circles cannot.</p><p><strong>The trade-offs:</strong> separating primary, secondary, and remnant measurements makes their mass distributions easier to compare, but removes the original's explicit visual links between components of the same merger. Only one event’s intervals are shown at a time. These changes improve the chosen comparison tasks, but the redesign does not allow viewers to immediately determine which three marks belong to the same event.</p></div>
+    </div>
+  </section>
+  <section id="essay" class="chapter essay">
+    <div class="section-heading">
+      <p class="eyebrow">Critique and redesign / Essay</p>
+      <h2>Critique and Redesign of <div class="og-title">Masses in the Stellar Graveyard</div></h2>
+    </div>
+
+    <p><em>Masses in the Stellar Graveyard</em> is an interactive visualization created by Aaron Geller and collaborators for Northwestern and LIGO–Virgo–KAGRA. It brings together mass estimates for black holes and neutron stars observed through gravitational waves (GW) and electromagnetic observations (EM). GW events may contribute a primary mass, secondary mass, and remnant mass, while EM entries describe individual compact objects. The main message is that stellar remnants occupy a broad range of masses and that different observing methods reveal different parts of this range, including the proposed 2.5-5 M☉ mass gap. The intended audience includes astronomy students, educators, researchers, and interested members of the public. Important tasks are comparing mass ranges across categories, finding unusually light or heavy objects, locating named events, comparing merger components with remnants, and inspecting objects near the mass gap.</p>
+
+    <figure class="essay-figure">
+      <img src="original-viz-view1.png" width="2559" height="1430" loading="lazy" alt="Original standard view of Masses in the Stellar Graveyard, showing colored objects on a shared mass axis with merger arrows.">
+      <figcaption><strong>Figure 1.</strong> Original standard view of <em>Masses in the Stellar Graveyard</em>.</figcaption>
+    </figure>
+
+    <p>The original has several strong design choices. First, the standard view places all masses on one logarithmic scale, allowing neutron stars and very massive black-hole remnants to remain visible in the same view. Color also provides a clear categorical encoding for GW black holes, GW neutron stars, EM black holes, and EM neutron stars. Second, the merger arrows communicate relationships between components and their remnants. Search, filtering, and tooltips provide additional detail without requiring every point to be permanently labeled.</p>
+
+    <p>However, several design choices make comparison more difficult. The three alternative views use force-directed layouts even though spatial proximity does not encode a meaningful quantitative variable. Their positions are unstable, require time to settle, and dense links create the classic “hairball” problem. Even in the standard view, many similar arrows compete with individual measurements and can make one event difficult to trace. Mass is also encoded redundantly through both position and point size, even though position on a shared scale already provides the more accurate comparison channel. Some controls, such as decorative sorting arrangements, change the overall shape without clearly supporting scientific tasks. Finally, the overview largely hides uncertainty, even though these masses are estimates rather than exact values.</p>
+
+    <figure class="essay-figure">
+      <img src="redesign-1.png" width="1742" height="1124" loading="lazy" alt="Redesigned mass overview with five categorical beeswarm rows on a shared horizontal mass axis.">
+      <figcaption><strong>Figure 2.</strong> Redesigned mass overview using categorical beeswarm plots.</figcaption>
+    </figure>
+
+    <p>My first major redesign decision was to replace the force layouts with a deterministic beeswarm overview. Mass is encoded by horizontal position on a shared axis, while five labeled rows separate GW remnant, primary, and secondary estimates from EM black holes and neutron stars. Equal-size marks remove the competing area encoding, and vertical offsets are used only to prevent overlap. The mass-gap band is retained as a shared reference across all rows. This makes population ranges, clusters, outliers, and overlap much easier to compare directly.</p>
+
+    <p>The second major decision was to separate overview from event-level detail. Instead of drawing every component-remnant relationship simultaneously, selecting an event highlights its measurements and opens a detail panel where its primary, secondary, and remnant estimates are shown together. This preserves the relationship task without requiring users to trace arrows through the entire catalog. The detail view also introduces uncertainty whiskers and exact reported bounds. A local linear scale is used because interval width is easier to interpret as a difference than on a logarithmic scale.</p>
+
+    <figure class="essay-figure">
+      <img src="redesign-2.png" width="1783" height="1425" loading="lazy" alt="Selected-event interval view with mass whiskers, reported bounds, and a table of exact values.">
+      <figcaption><strong>Figure 3.</strong> Selected-event interval view and exact-value table.</figcaption>
+    </figure>
+
+    <p>The third major decision was to align interaction with specific tasks. Search, observing-method filtering, low-mass filtering, axis-scale selection, and value sorting replace decorative rearrangements. A table provides exact values and reported intervals for lookup, while the beeswarm remains responsible for pattern discovery. Together, these components form a coordinated overview-detail interface rather than three unrelated visualizations.</p>
+
+    <p>Compared with the original, the redesign improves population comparison, outlier detection, inspection of the mass gap, uncertainty interpretation, and exact-value lookup. The main trade-off is that separating primary, secondary, and remnant rows removes the original’s immediate visual links between all merger components. Only one event’s intervals are shown at a time, so the redesign favors focused comparison over seeing every relationship simultaneously. It also uses a frozen teaching snapshot rather than the newest possible catalog, and GW credible intervals and EM published bounds are not statistically equivalent. These limitations are documented so the visualization does not imply more certainty or completeness than the data support.</p>
+  </section>
+</main>
+<footer class="site-footer"><a href="../index.html">← Back to STATS 401</a><p>Individual project · Critique, redesign, reflection</p><a href="#main">Back to top ↑</a></footer>
+<div id="tooltip" class="tooltip" hidden></div>
+</body>
+
+
+</html>
