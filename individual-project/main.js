@@ -177,6 +177,7 @@
     root.append("text").attr("class", "axis-label").attr("x", (177 + width - 34) / 2)
       .attr("y", height - 14).attr("text-anchor", "middle")
       .text("Mass (M☉) · " + ($("scale").value === "log" ? "logarithmic" : "linear") + " scale");
+    root.append("g").attr("class", "event-connectors").attr("aria-hidden", "true");
     const points = root.append("g").attr("class", "marks").selectAll("path").data(state.visible, d => d.id)
       .join("path").attr("class", "point")
       .attr("transform", d => "translate(" + positions.get(d.id).x + "," + positions.get(d.id).y + ")")
@@ -196,6 +197,14 @@
     const width = Math.max(920, $("overview").parentElement.clientWidth - 24);
     const {positions} = getLayout(width);
     const matching = state.visible.filter(d => d.name === state.selected);
+    const roles = new Map(matching.filter(d => d.method === "GW").map(d => [d.role, d]));
+    const connectors = [["remnant", "primary"], ["primary", "secondary"]]
+      .filter(([from, to]) => roles.has(from) && roles.has(to))
+      .map(([from, to]) => ({from: roles.get(from), to: roles.get(to)}));
+    d3.select("#overview .event-connectors").selectAll("line")
+      .data(connectors, d => d.from.id + ":" + d.to.id).join("line")
+      .attr("x1", d => positions.get(d.from.id).x).attr("y1", d => positions.get(d.from.id).y)
+      .attr("x2", d => positions.get(d.to.id).x).attr("y2", d => positions.get(d.to.id).y);
     d3.select("#overview .halos").selectAll("circle").data(matching, d => d.id).join("circle")
       .attr("class", "selected-halo").attr("r", 7)
       .attr("cx", d => positions.get(d.id).x).attr("cy", d => positions.get(d.id).y);
