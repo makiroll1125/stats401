@@ -1512,3 +1512,54 @@ h1 em {
     fill: #fff;
   }
 }
+
+/* Essay below the design rationale */
+.essay .section-heading,
+.essay > p {
+  max-width: 78ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.essay > p {
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.essay .section-heading h2 em {
+  color: var(--teal);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.essay-figure {
+  max-width: 1000px;
+  margin: 36px auto 42px;
+}
+
+.essay-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #070c1c;
+}
+
+.essay-figure figcaption {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+
+.essay-figure figcaption strong {
+  color: var(--teal);
+}
+
+@media print {
+  .essay-figure {
+    break-inside: avoid;
+  }
+}

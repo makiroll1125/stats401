@@ -136,8 +136,45 @@
       <div><p>The original offers an expressive, comprehensive overview of the stellar graveyard. The redesign makes three tasks more direct: comparing ranges on a common axis, locating a named event, and judging a mass estimate alongside its uncertainty. Persistent labels make observing methods and merger roles explicit, while the table supports precise comparisons that packed circles cannot.</p><p><strong>The trade-offs:</strong> separating primary, secondary, and remnant measurements makes their mass distributions easier to compare, but removes the original's explicit visual links between components of the same merger. Only one event’s intervals are shown at a time. These changes improve the chosen comparison tasks, but the redesign does not allow viewers to immediately determine which three marks belong to the same event.</p></div>
     </div>
   </section>
+  <section id="essay" class="chapter essay">
+    <div class="section-heading">
+      <p class="eyebrow">Critique and redesign / Essay</p>
+      <h2>Critique and Redesign of <div class="og-title">Masses in the Stellar Graveyard</div></h2>
+    </div>
+
+    <p><em>Masses in the Stellar Graveyard</em> is an interactive visualization created by Aaron Geller and collaborators for Northwestern and LIGO–Virgo–KAGRA. It brings together mass estimates for black holes and neutron stars observed through gravitational waves (GW) and electromagnetic observations (EM). GW events may contribute a primary mass, secondary mass, and remnant mass, while EM entries describe individual compact objects. The main message is that stellar remnants occupy a broad range of masses and that different observing methods reveal different parts of this range, including the proposed 2.5-5 M☉ mass gap. The intended audience includes astronomy students, educators, researchers, and interested members of the public. Important tasks are comparing mass ranges across categories, finding unusually light or heavy objects, locating named events, comparing merger components with remnants, and inspecting objects near the mass gap.</p>
+
+    <figure class="essay-figure">
+      <img src="original-viz-view1.png" width="2559" height="1430" loading="lazy" alt="Original standard view of Masses in the Stellar Graveyard, showing colored objects on a shared mass axis with merger arrows.">
+      <figcaption><strong>Figure 1.</strong> Original standard view of <em>Masses in the Stellar Graveyard</em>.</figcaption>
+    </figure>
+
+    <p>The original has several strong design choices. First, the standard view places all masses on one logarithmic scale, allowing neutron stars and very massive black-hole remnants to remain visible in the same view. Color also provides a clear categorical encoding for GW black holes, GW neutron stars, EM black holes, and EM neutron stars. Second, the merger arrows communicate relationships between components and their remnants. Search, filtering, and tooltips provide additional detail without requiring every point to be permanently labeled.</p>
+
+    <p>However, several design choices make comparison more difficult. The three alternative views use force-directed layouts even though spatial proximity does not encode a meaningful quantitative variable. Their positions are unstable, require time to settle, and dense links create the classic “hairball” problem. Even in the standard view, many similar arrows compete with individual measurements and can make one event difficult to trace. Mass is also encoded redundantly through both position and point size, even though position on a shared scale already provides the more accurate comparison channel. Some controls, such as decorative sorting arrangements, change the overall shape without clearly supporting scientific tasks. Finally, the overview largely hides uncertainty, even though these masses are estimates rather than exact values.</p>
+
+    <figure class="essay-figure">
+      <img src="redesign-1.png" width="1742" height="1124" loading="lazy" alt="Redesigned mass overview with five categorical beeswarm rows on a shared horizontal mass axis.">
+      <figcaption><strong>Figure 2.</strong> Redesigned mass overview using categorical beeswarm plots.</figcaption>
+    </figure>
+
+    <p>My first major redesign decision was to replace the force layouts with a deterministic beeswarm overview. Mass is encoded by horizontal position on a shared axis, while five labeled rows separate GW remnant, primary, and secondary estimates from EM black holes and neutron stars. Equal-size marks remove the competing area encoding, and vertical offsets are used only to prevent overlap. The mass-gap band is retained as a shared reference across all rows. This makes population ranges, clusters, outliers, and overlap much easier to compare directly.</p>
+
+    <p>The second major decision was to separate overview from event-level detail. Instead of drawing every component-remnant relationship simultaneously, selecting an event highlights its measurements and opens a detail panel where its primary, secondary, and remnant estimates are shown together. This preserves the relationship task without requiring users to trace arrows through the entire catalog. The detail view also introduces uncertainty whiskers and exact reported bounds. A local linear scale is used because interval width is easier to interpret as a difference than on a logarithmic scale.</p>
+
+    <figure class="essay-figure">
+      <img src="redesign-2.png" width="1783" height="1425" loading="lazy" alt="Selected-event interval view with mass whiskers, reported bounds, and a table of exact values.">
+      <figcaption><strong>Figure 3.</strong> Selected-event interval view and exact-value table.</figcaption>
+    </figure>
+
+    <p>The third major decision was to align interaction with specific tasks. Search, observing-method filtering, low-mass filtering, axis-scale selection, and value sorting replace decorative rearrangements. A table provides exact values and reported intervals for lookup, while the beeswarm remains responsible for pattern discovery. Together, these components form a coordinated overview-detail interface rather than three unrelated visualizations.</p>
+
+    <p>Compared with the original, the redesign improves population comparison, outlier detection, inspection of the mass gap, uncertainty interpretation, and exact-value lookup. The main trade-off is that separating primary, secondary, and remnant rows removes the original’s immediate visual links between all merger components. Only one event’s intervals are shown at a time, so the redesign favors focused comparison over seeing every relationship simultaneously. It also uses a frozen teaching snapshot rather than the newest possible catalog, and GW credible intervals and EM published bounds are not statistically equivalent. These limitations are documented so the visualization does not imply more certainty or completeness than the data support.</p>
+  </section>
 </main>
 <footer class="site-footer"><a href="../index.html">← Back to STATS 401</a><p>Individual project · Critique, redesign, reflection</p><a href="#main">Back to top ↑</a></footer>
 <div id="tooltip" class="tooltip" hidden></div>
 </body>
+
+
 </html>
