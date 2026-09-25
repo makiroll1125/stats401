@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>STATS 401 Labs</title>
+    
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="lab-nav">
+        <a href="../index.html">Home</a>
+        <a href="../lab1/index.html">Lab 1</a>
+        <a href="../lab2/index.html">Lab 2</a>
+        <a href="../lab3/index.html">Lab 3</a>
+        <a href="../lab4/index.html">Lab 4</a>
+        <a href="../lab5/index.html">Lab 5</a>
+        <a href="../lab6/index.html">Lab 6</a>
+        <a href="../lab7/index.html">Lab 7</a>
+        <a href="../lab8/index.html">Lab 8</a>
+        <a href="../lab9/index.html">Lab 9</a>
+        <a href="../lab10/index.html">Lab 10</a>
+    </nav>
+    <div class="section">
+        <h1>Part 1: Select a Visualization</h1>
+        <img src="original-viz.png">
+        <h2>Masses in the Stellar Graveyard</h2>
+        <a href="https://ligo.northwestern.edu/media/mass-plot/index.html">Source</a>
+        <p>The visualization shows masses of black holes and neutron stars discovered through gravitational waves and electromagnetic observations. The interactive version provides multiple sorting modes, toggles for black holes/neutron stars and GW/EM detections, point-size controls, several layouts including standard and circle-pack views, and search.</p>
+        <p>The latest published version incorporates the expanding LIGO-Virgo-KAGRA catalog, and GWOSC currently provides the underlying event data publicly through both its catalog API and downloadable releases.</p>
+    </div>
+    <div class="section">
+        <h1>Part 2: Analyze the Original Visualization</h1>
+        <p>Intended message: The visualization is trying to plot masses of black holes and neutron stars discovered through gravitational waves and electromagnetic observations. The first view communicates mass patterns for these groups and highlights a potential mass gap in the range of 2.5-5 solar masses where very few of these astronomical objects are found.</p>
+        <p>Audience: The intended audience are astrophysicists / astronomers and researchers interested in understanding and visualizing black hole and neutron star merger events.</p>
+        <p>Tasks: Viewers should be able to compare objects or merger events (compare values), determine final object mass after merge (determine values), notice trends in the masses of these objects (identify trends / explore patterns), find outliers, search for certain merger events (searc).</p>
+    </div>
+    <div class="section">
+        <h1>Part 3: Critique the Visualization</h1>
+        <p>Strengths: 1. Class attributes are easy to distinguish. Four vibrant distinct colors are used to separate all four classes (merger BHs, merger neutron stars, EM BHs, EM neutron stars). 2. Four views allows different visualizations of the relationships of the data. 3. Interaction allows users to customizably sort both objects (gravitational waves and electormagnetic) to identify or compare various relationships. 4. In view 1 (standard), despite the large amount of data, the visualizaiton does a great job of managing overplotting / complexity by using small point marks, opaque / slightly transparent points, thin lines, and tooltips to display additional relevant data instead of encoding them into attributes. 5. </p>
+        <p>Weaknesses: 1. In the standard view, mass is double encoded (y-axis and area of point marks) which can be redundant. 2. Circle pack, circle links, and nodes views all suffer heavily from complexity (the classic "hairball" problem) and are functionally useless. 3. circle pack, circle links, and nodes are force-directed so their plots take a bit to finalize and are nondeterministic. 3. Bad algorithm causes slowness in force-directed views. 4. Toggling objects (black holes) does not remove their links. 5. There are no options for plotting other variables (ex. final mass, mass 1, mass 2, redshift) so it's not possible to determine other potentially useful relationships.</p>
+        <p>Opportunities for Improvement: View weaknesses</p>
+    </div>
+    <div class="section">
+        <h1>Part 4: Redesign</h1>
+    </div>
+    <div class="section">
+        <h1>Part 5: Explain Your Design</h1>
+        <p>What I changed:</p>
+        <p>Why I changed it:</p>
+        <p>Which problems it addresses:</p>
+        <p>How it improves the visualization:</p>
+        <p>Overall (Original vis vs. my redesign): </p>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="main.js"></script>
+</body>
+
+</html>
