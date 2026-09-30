@@ -1,27 +1,86 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <title>Lab 9</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 9 | Geospatial Visualization</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body { max-width: 1200px; color: #182433; }
+        main { max-width: 1100px; margin: 0 auto 50px; }
+        .intro { color: #45566a; max-width: 850px; }
+        .panel { margin: 25px 0; padding: 22px; border: 1px solid #d9e2ea; border-radius: 12px; background: #fff; }
+        .panel h2 { margin-top: 0; }
+        .map-frame { overflow: hidden; border: 1px solid #d9e2ea; border-radius: 8px; background: #edf3f7; }
+        .map-frame svg { display: block; width: 100%; height: auto; }
+        .country { stroke: #fff; stroke-width: 0.7; cursor: pointer; }
+        .country.is-active { stroke: #162b40; stroke-width: 2.5; }
+        .economy { stroke: #fff; stroke-width: 1.5; cursor: pointer; }
+        .economy.is-active { stroke: #162b40; stroke-width: 3.5; }
+        .country:focus-visible, .economy:focus-visible { outline: none; stroke: #f39c34; stroke-width: 3; }
+        .map-label { fill: #fff; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+        .hint, .note, .source-note, #join-status { color: #526477; line-height: 1.55; }
+        .hint { margin: 8px 0 14px; }
+        .legend { margin-top: 15px; }
+        .legend svg { display: block; max-width: 100%; }
+        .no-data-key { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 13px; }
+        .no-data-key span { width: 16px; height: 16px; background: #cbd3db; border: 1px solid white; }
+        .tooltip { position: fixed; opacity: 0; z-index: 20; }
+        .tooltip strong { display: block; }
+        .analysis { max-width: 850px; }
+        .analysis p { line-height: 1.65; }
+        .source-note { font-size: 13px; }
+        .source-note a { color: #165f88; }
+        .error { color: #a12f2f; font-weight: bold; }
+    </style>
 </head>
-
 <body>
+    <nav class="lab-nav">
+        <a href="../index.html">Home</a>
+        <a href="../lab1/index.html">Lab 1</a>
+        <a href="../lab2/index.html">Lab 2</a>
+        <a href="../lab3/index.html">Lab 3</a>
+        <a href="../lab4/index.html">Lab 4</a>
+        <a href="../lab5/index.html">Lab 5</a>
+        <a href="../lab6/index.html">Lab 6</a>
+        <a href="../lab7/index.html">Lab 7</a>
+        <a href="../lab8/index.html">Lab 8</a>
+        <a href="../lab9/index.html">Lab 9</a>
+        <a href="../lab10/index.html">Lab 10</a>
+    </nav>
+    <main>
+        <h1>Lab 9: Geospatial Visualization</h1>
+        <p class="intro">Two views of 2025 nominal GDP for the 50 largest economies. Hover over a country or circle to highlight the same economy in both views. Click to keep it selected; click again or press Escape to clear.</p>
 
-    <h1>Lab 9</h1>
+        <section class="panel">
+            <h2>1. Dataset Description</h2>
+            <p>The supplied <a href="../data/lab9_gdp_2025_top50.csv">CSV</a> lists 2025 nominal GDP in billions of current U.S. dollars, plus GDP rank and ISO-3 identifier. It is based on the IMF World Economic Outlook, October 2025. WEO values can include staff estimates and may be revised. Country boundaries come from <a href="https://github.com/nvkelso/natural-earth-vector">Natural Earth</a>; the data join uses the map's ISO-3 administration code. Economies outside the top 50 have no GDP value in this dataset.</p>
+            <p id="join-status" aria-live="polite">Loading map and GDP data…</p>
+        </section>
 
-    <p>
-        Lab 9 will be added here.
-    </p>
+        <section class="panel">
+            <h2>2. 2025 GDP Choropleth</h2>
+            <p class="hint">Country shape shows geographic boundaries. Color shows nominal GDP. Scroll or pinch to zoom, then drag to pan.</p>
+            <div id="choropleth" class="map-frame"></div>
+            <div id="color-legend" class="legend" aria-label="GDP color legend"></div>
+            <p class="note">The color scale is logarithmic. GDP ranges from about $300 billion to $30.6 trillion, so a linear scale would make most economies look nearly alike. The log scale gives more visible color differences across the full range; legend labels show actual GDP values.</p>
+        </section>
 
-    <a href="../index.html">
-        Back to home
-    </a>
+        <section class="panel">
+            <h2>3. 2025 GDP Cartogram</h2>
+            <p class="hint"><strong>Circle area represents 2025 GDP.</strong> This Dorling cartogram replaces country outlines with circles and moves them enough to avoid overlap. Approximate geographic positions help orientation, but borders and distances are distorted. Only economies in the CSV appear.</p>
+            <div id="cartogram" class="map-frame"></div>
+            <div id="area-legend" class="legend" aria-label="GDP circle area legend"></div>
+        </section>
 
+        <section class="panel analysis">
+            <h2>4. Design and Comparison</h2>
+            <p>On the choropleth, the United States, China, and Russia occupy much of the map because their territories are large. Dark color identifies the United States and China as the largest GDPs, while Russia and Canada have large geographic footprints despite smaller GDPs. Germany, Japan, and the United Kingdom can be easy to overlook at world scale, even with dark fills.</p>
+            <p>In the cartogram, the United States and China become the largest circles. Germany, Japan, and India gain space relative to their land area; Russia, Canada, and Australia shrink. The choropleth preserves coastlines, borders, and neighbors, so it supports locating an economy and scanning regional patterns. Its small countries remain hard to inspect, and comparing shades is imprecise. The cartogram makes relative economic size and rank easier to judge because area directly follows GDP. It distorts locations and removes recognizable country shapes, making adjacency and exact geography harder to read. Linked highlighting helps identify circles in the geographic view. Moving GDP from color alone to area makes the concentration of output in the two largest economies more immediate.</p>
+        </section>
+    </main>
+    <div id="tooltip" class="tooltip" role="status"></div>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="lab9.js"></script>
 </body>
-
 </html>
