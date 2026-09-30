@@ -15,10 +15,9 @@
         .map-frame svg { display: block; width: 100%; height: auto; }
         .country { stroke: #fff; stroke-width: 0.7; cursor: pointer; }
         .country.is-active { stroke: #162b40; stroke-width: 2.5; }
-        .economy { stroke: #fff; stroke-width: 1.5; cursor: pointer; }
-        .economy.is-active { stroke: #162b40; stroke-width: 3.5; }
-        .country:focus-visible, .economy:focus-visible { outline: none; stroke: #f39c34; stroke-width: 3; }
-        .map-label { fill: #fff; font-size: 13px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+        .map-frame .cartogram path.feature { stroke: #fff; stroke-width: 0.7; cursor: pointer; }
+        .map-frame .cartogram path.feature.is-active { stroke: #162b40; stroke-width: 2.5; }
+        .country:focus-visible, .map-frame .cartogram path.feature:focus-visible { outline: none; stroke: #f39c34; stroke-width: 3; }
         .hint, .note, .source-note, #join-status { color: #526477; line-height: 1.55; }
         .hint { margin: 8px 0 14px; }
         .legend { margin-top: 15px; }
@@ -50,7 +49,7 @@
     </nav>
     <main>
         <h1>Lab 9: Geospatial Visualization</h1>
-        <p class="intro">Two views of 2025 nominal GDP for the 50 largest economies. Hover over a country or circle to highlight the same economy in both views. Click to keep it selected; click again or press Escape to clear.</p>
+        <p class="intro">Two views of 2025 nominal GDP for the 50 largest economies. Hover over a country in either map to highlight it in both views. Click to keep it selected; click again or press Escape to clear.</p>
 
         <section class="panel">
             <h2>1. Dataset Description</h2>
@@ -68,19 +67,19 @@
 
         <section class="panel">
             <h2>3. 2025 GDP Cartogram</h2>
-            <p class="hint"><strong>Circle area represents 2025 GDP.</strong> This Dorling cartogram replaces country outlines with circles and moves them enough to avoid overlap. Approximate geographic positions help orientation, but borders and distances are distorted. Only economies in the CSV appear.</p>
+            <p class="hint"><strong>Country polygon area represents 2025 GDP for the top 50 economies.</strong> This contiguous cartogram distorts a world map using the <a href="https://vasturiano.github.io/cartogram-chart/example/world-population/">Cartogram Chart example</a>. Neutral countries have no GDP value in the CSV. A small display weight keeps most neutral boundaries visible; 24 tiny no-data areas are omitted at this resolution. Their display weight and area are not GDP estimates.</p>
             <div id="cartogram" class="map-frame"></div>
-            <div id="area-legend" class="legend" aria-label="GDP circle area legend"></div>
         </section>
 
         <section class="panel analysis">
             <h2>4. Design and Comparison</h2>
             <p>On the choropleth, the United States, China, and Russia occupy much of the map because their territories are large. Dark color identifies the United States and China as the largest GDPs, while Russia and Canada have large geographic footprints despite smaller GDPs. Germany, Japan, and the United Kingdom can be easy to overlook at world scale, even with dark fills.</p>
-            <p>In the cartogram, the United States and China become the largest circles. Germany, Japan, and India gain space relative to their land area; Russia, Canada, and Australia shrink. The choropleth preserves coastlines, borders, and neighbors, so it supports locating an economy and scanning regional patterns. Its small countries remain hard to inspect, and comparing shades is imprecise. The cartogram makes relative economic size and rank easier to judge because area directly follows GDP. It distorts locations and removes recognizable country shapes, making adjacency and exact geography harder to read. Linked highlighting helps identify circles in the geographic view. Moving GDP from color alone to area makes the concentration of output in the two largest economies more immediate.</p>
+            <p>In the cartogram, the United States and China expand strongly. Germany, Japan, India, and the United Kingdom gain space relative to their ordinary map footprints; Russia, Canada, and Australia contract. The choropleth preserves familiar borders, coastlines, neighboring countries, and approximate distances. It supports locating economies and scanning regional patterns, although small wealthy countries remain hard to see and colors are imprecise for ranking. The cartogram uses distorted polygon area to make economic magnitude easier to judge while keeping a recognizable world layout. Its stretched borders and moved coastlines make distance, land area, and exact shape unreliable. Linked highlighting helps identify a distorted country in the geographic map. Encoding GDP through area makes the concentration of output in the United States and China more immediate than color alone, but it reduces geographic precision.</p>
         </section>
     </main>
     <div id="tooltip" class="tooltip" role="status"></div>
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cartogram-chart@1.4.4/dist/cartogram-chart.min.js"></script>
     <script src="lab9.js"></script>
 </body>
 </html>

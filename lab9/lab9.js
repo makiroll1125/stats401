@@ -6,10 +6,11 @@ const noDataColor = "#cbd3db";
 let selectedIso = null;
 let hoveredIso = null;
 let countries;
-let circles;
+let cartCountries;
 
 Promise.all([
     d3.json("world.geojson"),
+    d3.json("world.topojson"),
     d3.csv(
         "../data/lab9_gdp_2025_top50.csv",
         d => ({
@@ -20,7 +21,7 @@ Promise.all([
         })
     )
 ])
-.then(([geoData, stats]) => {
+.then(([geoData, topoData, stats]) => {
     const valueById = new Map(stats.map(d => [d.iso3, d]));
     const geographicIds = new Set(geoData.features.map(d => d.properties.iso3));
     const unmatched = stats.filter(d => !geographicIds.has(d.iso3));
@@ -37,7 +38,7 @@ Promise.all([
         stats.length + " of " + stats.length +
         " GDP records matched to map features by ISO-3 code. " +
         (geoData.features.length - stats.length) +
-        " other map areas are shown as no data."
+        " other map areas have no GDP value and use a neutral color on the choropleth."
     );
 
     const projection = d3.geoNaturalEarth1()
@@ -50,7 +51,7 @@ Promise.all([
 
     drawChoropleth(geoData, path, colorScale);
     drawColorLegend(colorScale, minGDP, maxGDP);
-    drawCartogram(geoData, path, maxGDP, colorScale);
+    drawCartogram(geoData, topoData, path, maxGDP, colorScale, valueById);
 })
 .catch(error => {
     console.error(error);
@@ -117,100 +118,75 @@ function drawChoropleth(geoData, path, colorScale) {
     svg.call(zoom);
 }
 
-function drawCartogram(geoData, path, maxGDP, colorScale) {
-    const features = geoData.features.filter(d => d.properties.gdp);
-    const radius = gdp => Math.sqrt(gdp / maxGDP) * 88;
+function drawCartogram(geoData, topoData, path, maxGDP, colorScale, valueById) {
+    const areaById = new Map(geoData.features.map(d => [
+        d.properties.iso3,
+        path.area(d)
+    ]));
+    const usArea = areaById.get("USA");
+    const neutralWeight = maxGDP / (5 * usArea);
+    const shapes = topoData.objects.countries.geometries;
 
-    const nodes = features.map(feature => {
-        const center = path.centroid(feature);
-        const x = Number.isFinite(center[0]) ? center[0] : width / 2;
-        const y = Number.isFinite(center[1]) ? center[1] : height / 2;
-
-        return {
-            feature: feature,
-            iso3: feature.properties.iso3,
-            gdp: feature.properties.gdp.gdp,
-            radius: radius(feature.properties.gdp.gdp),
-            homeX: x,
-            homeY: y,
-            x: x,
-            y: y
-        };
+    shapes.forEach(shape => {
+        const iso3 = shape.properties.iso3;
+        shape.properties.gdp = valueById.get(iso3) || null;
+        shape.properties.displayWeight = shape.properties.gdp
+            ? shape.properties.gdp.gdp
+            : Math.max(1, areaById.get(iso3) * neutralWeight);
     });
 
-    const simulation = d3.forceSimulation(nodes)
-        .force("x", d3.forceX(d => d.homeX).strength(0.25))
-        .force("y", d3.forceY(d => d.homeY).strength(0.25))
-        .force("collide", d3.forceCollide(d => d.radius + 2).iterations(2))
-        .stop();
+    const holder = document.getElementById("cartogram");
+    const observer = new MutationObserver(() => {
+        const paths = d3.select(holder).selectAll("path.feature");
+        if (paths.size() !== shapes.length) return;
+        observer.disconnect();
 
-    for (let i = 0; i < 450; i++) {
-        simulation.tick();
-    }
+        cartCountries = paths
+            .attr("tabindex", d => d.properties.gdp ? 0 : null)
+            .attr("aria-label", countryLabel)
+            .on("pointerover.lab9", function(event, d) {
+                hoveredIso = d.properties.gdp ? d.properties.iso3 : null;
+                updateHighlight();
+                showTooltip(event, d);
+            })
+            .on("pointermove.lab9", moveTooltip)
+            .on("pointerout.lab9", clearHover)
+            .on("focus.lab9", function(event, d) {
+                hoveredIso = d.properties.iso3;
+                updateHighlight();
+            })
+            .on("blur.lab9", clearHover)
+            .on("keydown.lab9", function(event, d) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    selectCountry(d);
+                }
+            });
 
-    nodes.forEach(d => {
-        d.x = Math.max(d.radius + 4, Math.min(width - d.radius - 4, d.x));
-        d.y = Math.max(d.radius + 4, Math.min(height - d.radius - 4, d.y));
-    });
-
-    const svg = d3.select("#cartogram")
-        .append("svg")
-        .attr("viewBox", "0 0 " + width + " " + height)
-        .attr("role", "img")
-        .attr("aria-label", "Dorling cartogram with circle area proportional to 2025 nominal GDP");
-
-    svg.append("rect")
-        .attr("width", width)
-        .attr("height", height)
-        .attr("fill", "#edf3f7");
-
-    circles = svg.selectAll(".economy")
-        .data(nodes)
-        .join("circle")
-        .attr("class", "economy")
-        .attr("cx", d => d.x)
-        .attr("cy", d => d.y)
-        .attr("r", d => d.radius)
-        .attr("fill", d => colorScale(d.gdp))
-        .attr("tabindex", 0)
-        .attr("aria-label", d => countryLabel(d.feature))
-        .on("pointerover", function(event, d) {
-            hoveredIso = d.iso3;
-            updateHighlight();
-            showTooltip(event, d.feature);
-        })
-        .on("pointermove", moveTooltip)
-        .on("pointerout", clearHover)
-        .on("focus", function(event, d) {
-            hoveredIso = d.iso3;
-            updateHighlight();
-        })
-        .on("blur", clearHover)
-        .on("click", function(event, d) {
-            event.stopPropagation();
-            selectCountry(d.feature);
-        })
-        .on("keydown", function(event, d) {
-            if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                selectCountry(d.feature);
-            }
-        });
-
-    svg.selectAll(".map-label")
-        .data(nodes.filter(d => d.radius >= 28))
-        .join("text")
-        .attr("class", "map-label")
-        .attr("x", d => d.x)
-        .attr("y", d => d.y)
-        .text(d => d.iso3);
-
-    svg.on("click", function() {
-        selectedIso = null;
         updateHighlight();
     });
 
-    drawAreaLegend(radius);
+    observer.observe(holder, {childList: true, subtree: true});
+
+    new Cartogram(holder)
+        .width(width)
+        .height(height)
+        .projection(path.projection())
+        .topoObjectName("countries")
+        .iterations(60)
+        .value(d => d.properties.displayWeight)
+        .color(d => d.properties.gdp
+            ? colorScale(d.properties.gdp.gdp)
+            : noDataColor)
+        .label(() => null)
+        .tooltipContent(() => null)
+        .onClick(selectCountry)
+        .topoJson(topoData);
+
+    d3.select(holder).select("svg")
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("role", "img")
+        .attr("aria-label", "World cartogram with country polygon area distorted by 2025 nominal GDP");
 }
 
 function drawColorLegend(colorScale, minGDP, maxGDP) {
@@ -249,35 +225,6 @@ function drawColorLegend(colorScale, minGDP, maxGDP) {
         .append("div")
         .attr("class", "no-data-key")
         .html("<span aria-hidden='true'></span>No data in the top-50 CSV");
-}
-
-function drawAreaLegend(radius) {
-    const values = [1000, 5000, 20000];
-    const positions = [38, 158, 370];
-    const svg = d3.select("#area-legend")
-        .append("svg")
-        .attr("viewBox", "0 0 470 182")
-        .attr("width", 470)
-        .attr("height", 182);
-
-    svg.selectAll("circle")
-        .data(values)
-        .join("circle")
-        .attr("cx", (d, i) => positions[i])
-        .attr("cy", d => 150 - radius(d))
-        .attr("r", radius)
-        .attr("fill", "#4c91c4")
-        .attr("fill-opacity", 0.75)
-        .attr("stroke", "#fff");
-
-    svg.selectAll("text")
-        .data(values)
-        .join("text")
-        .attr("x", (d, i) => positions[i])
-        .attr("y", 175)
-        .attr("text-anchor", "middle")
-        .attr("font-size", 12)
-        .text(d => "$" + d3.format(",")(d) + "B");
 }
 
 function countryLabel(feature) {
@@ -327,8 +274,8 @@ function updateHighlight() {
     if (countries) {
         countries.classed("is-active", d => d.properties.iso3 === activeIso);
     }
-    if (circles) {
-        circles.classed("is-active", d => d.iso3 === activeIso);
+    if (cartCountries) {
+        cartCountries.classed("is-active", d => d.properties.iso3 === activeIso);
     }
 }
 
