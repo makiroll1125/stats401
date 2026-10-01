@@ -49,12 +49,11 @@
     </nav>
     <main>
         <h1>Lab 9: Geospatial Visualization</h1>
-        <p class="intro">Two views of 2025 nominal GDP for the 50 largest economies. Hover over a country in either map to highlight it in both views. Click to keep it selected; click again or press Escape to clear.</p>
+        <p class="intro">Two views of 2025 nominal GDP for the 50 largest economies. Hover over a country to highlight it in both views.</p>
 
         <section class="panel">
             <h2>1. Dataset Description</h2>
-            <p>The supplied <a href="../data/lab9_gdp_2025_top50.csv">CSV</a> lists 2025 nominal GDP in billions of current U.S. dollars, plus GDP rank and ISO-3 identifier. It is based on the IMF World Economic Outlook, October 2025. WEO values can include staff estimates and may be revised. Country boundaries come from <a href="https://github.com/nvkelso/natural-earth-vector">Natural Earth</a>; the data join uses the map's ISO-3 administration code. Economies outside the top 50 have no GDP value in this dataset.</p>
-            <p id="join-status" aria-live="polite">Loading map and GDP data…</p>
+            <p>The <a href="../data/lab9_gdp_2025_top50.csv">dataset</a> lists 2025 nominal GDP in billions of current U.S. dollars, plus GDP rank and ISO-3 identifier. Economies outside the top 50 have no GDP value in this dataset.</p>
         </section>
 
         <section class="panel">
@@ -62,19 +61,19 @@
             <p class="hint">Country shape shows geographic boundaries. Color shows nominal GDP. Scroll or pinch to zoom, then drag to pan.</p>
             <div id="choropleth" class="map-frame"></div>
             <div id="color-legend" class="legend" aria-label="GDP color legend"></div>
-            <p class="note">The color scale is logarithmic. GDP ranges from about $300 billion to $30.6 trillion, so a linear scale would make most economies look nearly alike. The log scale gives more visible color differences across the full range; legend labels show actual GDP values.</p>
+            <p class="note">The color scale is logarithmic. GDP ranges from about $300 billion to $30.6 trillion so a a log scale gives more visible color differences across the full range.</p>
         </section>
 
         <section class="panel">
             <h2>3. 2025 GDP Cartogram</h2>
-            <p class="hint"><strong>Country polygon area represents 2025 GDP for the top 50 economies.</strong> This contiguous cartogram distorts a world map using the <a href="https://vasturiano.github.io/cartogram-chart/example/world-population/">Cartogram Chart example</a>. Neutral countries have no GDP value in the CSV. A small display weight keeps most neutral boundaries visible; 24 tiny no-data areas are omitted at this resolution. Their display weight and area are not GDP estimates.</p>
+            <p class="hint"><strong>Country polygon area represents 2025 GDP for the top 50 economies.</strong> This contiguous cartogram distorts a world map using the <a href="https://vasturiano.github.io/cartogram-chart/example/world-population/">Cartogram Chart example from vasturiano on Github</a>.</p>
             <div id="cartogram" class="map-frame"></div>
         </section>
 
         <section class="panel analysis">
             <h2>4. Design and Comparison</h2>
-            <p>On the choropleth, the United States, China, and Russia occupy much of the map because their territories are large. Dark color identifies the United States and China as the largest GDPs, while Russia and Canada have large geographic footprints despite smaller GDPs. Germany, Japan, and the United Kingdom can be easy to overlook at world scale, even with dark fills.</p>
-            <p>In the cartogram, the United States and China expand strongly. Germany, Japan, India, and the United Kingdom gain space relative to their ordinary map footprints; Russia, Canada, and Australia contract. The choropleth preserves familiar borders, coastlines, neighboring countries, and approximate distances. It supports locating economies and scanning regional patterns, although small wealthy countries remain hard to see and colors are imprecise for ranking. The cartogram uses distorted polygon area to make economic magnitude easier to judge while keeping a recognizable world layout. Its stretched borders and moved coastlines make distance, land area, and exact shape unreliable. Linked highlighting helps identify a distorted country in the geographic map. Encoding GDP through area makes the concentration of output in the United States and China more immediate than color alone, but it reduces geographic precision.</p>
+            <p>On the choropleth, the United States and China are most visually prominent because of their higher GDP and thus darker color on the map. Other countries such as Russia and Canada have large geographic sizes despite smaller GDPs so they're noticeable as well. Germany, Japan, the UK, and France have dark fills as well, but they're more difficult to notice due to their smaller geographic sizes.</p>
+            <p>In the cartogram, the United States, China, Japan, and many western European countries take up much more space. Russia, Canada, and Australia lose size as they contract due to their smaller GDP. The choropleth preserves country borders, relatively accurate geographic size, neighboring countries, and more accurate distances from each other, whereas the cartogram uses distorted area to make GDP easier to judge while preserving a somewhat recognizable world layout and positioning. Chloropleths are better for tasks such as measuring quantitative data, finding patterns, and identifying a place, however, they may struggle when region sizes vary wildly from each other as in a global map. Cartograms are more effective for visualizing quantitative data than choropleths, as well as elementary tasks such as comparison, finding the largest region, identifying a distorted region, etc.  The cartogram's stretched borders and moved coastlines make actual geographic area and exact shape distorted and unreliable. However, linked highlighting helps identify a distorted country in the geographic map. Encoding GDP through area makes the concentration of output in western Europe and Japan much more easy to identify than color only.</p>
         </section>
     </main>
     <div id="tooltip" class="tooltip" role="status"></div>

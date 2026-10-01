@@ -34,13 +34,6 @@ Promise.all([
         feature.properties.gdp = valueById.get(feature.properties.iso3) || null;
     });
 
-    d3.select("#join-status").text(
-        stats.length + " of " + stats.length +
-        " GDP records matched to map features by ISO-3 code. " +
-        (geoData.features.length - stats.length) +
-        " other map areas have no GDP value and use a neutral color on the choropleth."
-    );
-
     const projection = d3.geoNaturalEarth1()
         .fitExtent([[15, 15], [width - 15, height - 15]], geoData);
     const path = d3.geoPath().projection(projection);
