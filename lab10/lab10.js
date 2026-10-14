@@ -1,5 +1,4 @@
-// Extend Lab 7 through its existing button clicks and slider input events.
-// SpeechRecognition setup and transcript handling adapt lab10test.js.
+
 const byId = id => document.getElementById(id);
 const slider = byId("time-slider");
 const actionStatus = byId("action-status");
@@ -17,7 +16,6 @@ let playing = false;
 let actionSource = "Controls";
 
 function feedback(message) {
-    // Avoid repeated screen-reader announcements of identical tracking messages.
     if (gestureStatus.textContent !== message) gestureStatus.textContent = message;
 }
 
@@ -58,8 +56,7 @@ byId("timeline").addEventListener("click", event => {
     }
 });
 
-// Lab 7 loads CSVs asynchronously. Observe its displayed day to enable controls
-// only after its own handlers and visualization have initialized.
+
 const dayObserver = new MutationObserver(checkVisualization);
 dayObserver.observe(byId("current-time"), { childList: true, subtree: true });
 const errorObserver = new MutationObserver(() => {
@@ -88,7 +85,6 @@ else if (!window.isSecureContext) voiceStatus.textContent = "Voice requires loca
 if (!cameraSupported) feedback("Camera unavailable. Use localhost or HTTPS, or the day slider.");
 checkVisualization();
 
-// Voice stays enabled until the user stops it. Only final results cause actions.
 let recognition = null;
 let voiceEnabled = false;
 let restartTimeout = null;
@@ -171,8 +167,7 @@ voiceButton.addEventListener("click", () => {
     }
 });
 
-// MediaPipe browser equivalent of the hand-landmark approach in the provided
-// Python reference. No camera or model request occurs before a button click.
+
 const MEDIAPIPE_ROOT = "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.18";
 const MODEL_URL = "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task";
 let handLandmarker = null;
@@ -334,7 +329,6 @@ function scrubWithHand(landmarks, timestamp) {
 function trackHand(timestamp) {
     if (!cameraEnabled) return;
     try {
-        // Limit inference to about 12 fps to leave time for the D3 animation.
         if (video.readyState >= 2 && video.currentTime !== lastVideoTime && timestamp - lastInferenceTime >= 80) {
             lastVideoTime = video.currentTime;
             lastInferenceTime = timestamp;
@@ -350,8 +344,7 @@ function trackHand(timestamp) {
     }
 }
 
-// End sensor sessions on navigation or when the tab becomes hidden. Resuming
-// requires the same explicit button action as initial activation.
+
 function stopSensors() {
     if (voiceEnabled) stopVoice("Voice stopped because the page is inactive. Click Start to resume.");
     if (cameraEnabled) stopCamera("Camera stopped because the page is inactive. Click Start to resume.");
