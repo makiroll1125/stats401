@@ -1,27 +1,108 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <title>Lab 10</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 10 | Voice and Hand-Controlled Temporal Network</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="lab10.css">
 </head>
-
 <body>
+    <nav class="lab-nav" aria-label="Labs">
+        <a href="../index.html">Home</a>
+        <a href="../lab1/index.html">Lab 1</a>
+        <a href="../lab2/index.html">Lab 2</a>
+        <a href="../lab3/index.html">Lab 3</a>
+        <a href="../lab4/index.html">Lab 4</a>
+        <a href="../lab5/index.html">Lab 5</a>
+        <a href="../lab6/index.html">Lab 6</a>
+        <a href="../lab7/index.html">Lab 7</a>
+        <a href="../lab8/index.html">Lab 8</a>
+        <a href="../lab9/index.html">Lab 9</a>
+        <a href="index.html" aria-current="page">Lab 10</a>
+    </nav>
+    <h1>STATS 401: Data Acquisition and Visualization</h1>
+    <h3>Tobias Garcia</h3>
+    <h3>Net ID: tag41</h3>
+    <h2>Lab 10: Voice and Hand-Controlled Temporal Network</h2>
+    <p class="intro">This extends <a href="../lab7/index.html">Lab 7's animated commercial network</a>:
+        60 days of transactions among 12 companies. Use your voice to control playback and move one
+        hand horizontally to explore earlier or later days.</p>
 
-    <h1>Lab 10</h1>
+    <section class="interaction-panel" aria-labelledby="interaction-heading">
+        <h2 id="interaction-heading">Hands-free controls</h2>
+        <p class="hint">Both sensors start off. Activate either one with its button. Use localhost or HTTPS;
+            voice recognition works only in supported browsers, such as Chrome.</p>
+        <div class="interaction-grid">
+            <div class="sensor-card">
+                <h3>Voice → playback</h3>
+                <p>Click <strong>Start Voice Control</strong>, allow the microphone, then say
+                    <strong>“Play”</strong>, <strong>“Pause”</strong>, or <strong>“Reset”</strong>.
+                    Reset pauses playback and returns to day 1. Stop listening with the same button.</p>
+                <button id="voice-button" type="button" aria-pressed="false" disabled>Start Voice Control</button>
+                <p id="voice-status" class="sensor-status" role="status">Voice control inactive.</p>
+                <p id="voice-heard" class="recognition" aria-live="polite">Heard: —</p>
+                <p class="hint">Your browser's speech service may process microphone audio online.</p>
+            </div>
+            <div class="sensor-card">
+                <h3>Hand movement → day</h3>
+                <p>Click <strong>Start Camera</strong> and allow access. Show one hand in the preview, then
+                    drag it left for earlier days or right for later days. Movement pauses playback.
+                    Lower your hand to reposition without changing the day.</p>
+                <button id="camera-button" type="button" aria-pressed="false" disabled>Start Camera</button>
+                <p id="gesture-status" class="sensor-status" role="status">Camera inactive.</p>
+                <div class="camera-preview">
+                    <video id="camera" autoplay playsinline muted aria-label="Mirrored webcam preview"></video>
+                    <canvas id="hand-overlay" width="640" height="480" aria-hidden="true"></canvas>
+                    <span id="camera-placeholder">Camera preview appears here</span>
+                </div>
+                <p class="hint">The preview is mirrored: right on screen moves forward. Hand tracking runs in
+                    this browser; model files download when you first start the camera.</p>
+            </div>
+        </div>
+    </section>
 
-    <p>
-        Lab 10 will be added here.
-    </p>
+    <section aria-labelledby="network-heading">
+        <h2 id="network-heading">Daily commercial relationships</h2>
+        <div class="viz-panel">
+            <p class="hint">Mouse and keyboard always work: use the buttons, focus the day slider and press
+                arrow keys, or click a day in the timeline. Hover nodes and links for details.</p>
+            <div class="controls">
+                <button id="play" type="button" disabled>Play</button>
+                <button id="pause" type="button" disabled>Pause</button>
+                <button id="reset" type="button" disabled>Reset</button>
+                <label for="time-slider">Day</label>
+                <input type="range" id="time-slider" min="1" max="60" step="1" value="1" disabled>
+                <output id="current-time" for="time-slider">Day 1</output>
+            </div>
+            <p id="action-status" class="action-status" role="status">Loading Lab 7 data…</p>
+            <div class="summary">
+                <div>Active companies<strong id="active-companies">0</strong></div>
+                <div>Active relationships<strong id="active-links">0</strong></div>
+                <div>Total transaction value<strong id="total-value">$0</strong></div>
+            </div>
+            <div id="network"></div>
+            <div id="network-legend"></div>
+        </div>
+        <p>As in Lab 7, node fill identifies sector, shape identifies region, and area shows daily volume.
+            Link color identifies transaction type, width shows amount, and opacity shows transaction count.
+            Inactive companies remain faint but visible.</p>
+    </section>
+    <section aria-labelledby="timeline-heading">
+        <h2 id="timeline-heading">60-day overview</h2>
+        <p class="hint">Click the overview to select a day. The red guide follows the slider, including voice resets and hand movements.</p>
+        <div class="viz-panel"><div id="timeline"></div></div>
+    </section>
 
-    <a href="../index.html">
-        Back to home
-    </a>
-
+    <section aria-labelledby="reflection-heading">
+        <h2 id="reflection-heading">Design reflection</h2>
+        <p id="design-reflection">I extended Lab 7's animated temporal commercial network. Voice commands allow users to say Play, Pause, or Reset, invoking the same buttons as mouse input. Camera-based hand tracking using <a href="https://github.com/prashver/hand-landmark-recognition-using-mediapipe">hand-landmark recognition</a> translates horizontal hand movement into changes to the day slider: left moves the time backwards and right moves forward. These interactions support scanning changes in commercial relationships and stopping to inspect a particular day without continuously reaching for a mouse. Voice suits discrete playback actions while the hand movement provides a spatial mapping to time. Adding smoothing and a movement threshold to the hand-based tracking will reduce small tracking fluctuations, making the day-scroller less  overly-sensitive. Some limitations include background speech overlaying user speech, low lighting or occlusion blocking out hand-tracking support, and browser support varying between devices.</p>
+        <p class="hint">Hand tracking: <a href="https://github.com/prashver/hand-landmark-recognition-using-mediapipe">hand-landmark recognition using mediapipe</a>.</p>
+    </section>
+    <div id="tooltip" class="tooltip" role="status" aria-live="polite"></div>
+    <!-- Reuse the existing local D3 library and the original Lab 7 visualization directly. -->
+    <script src="../individual-project/vendor/d3.v7.min.js"></script>
+    <script src="../lab7/lab7.js"></script>
+    <script type="module" src="lab10.js"></script>
 </body>
-
 </html>

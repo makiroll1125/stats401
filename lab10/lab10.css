@@ -1,0 +1,60 @@
+/* The network, legend, and timeline styling is carried forward from Lab 7. */
+.intro { max-width: 850px; }
+.viz-panel, .interaction-panel {
+    margin: 20px 0 28px;
+    padding: 18px;
+    background: #fafafa;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+}
+.interaction-panel h2 { margin-top: 0; }
+.hint { color: #4b5563; font-size: 14px; }
+.interaction-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.sensor-card { padding: 16px; background: white; border: 1px solid #d1d5db; border-radius: 8px; }
+.sensor-card h3 { margin-top: 0; }
+button {
+    padding: 8px 14px;
+    border: 1px solid #9ca3af;
+    border-radius: 5px;
+    background: white;
+    color: #1f2937;
+    cursor: pointer;
+    font: inherit;
+}
+button:hover:not(:disabled) { background: #e5e7eb; }
+button:disabled { opacity: .55; cursor: not-allowed; }
+button[aria-pressed="true"] { background: #dbeafe; border-color: #2563eb; }
+button:focus-visible, #time-slider:focus-visible { outline: 3px solid #2563eb; outline-offset: 3px; }
+.sensor-status, .recognition { min-height: 24px; overflow-wrap: anywhere; }
+.sensor-status { color: #1e3a8a; }
+.action-status { padding: 10px 12px; border-left: 3px solid #2563eb; background: #eff6ff; }
+.camera-preview { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #172033; border-radius: 6px; }
+#camera, #hand-overlay { position: absolute; width: 100%; height: 100%; inset: 0; transform: scaleX(-1); }
+#camera-placeholder { position: absolute; inset: 0; display: grid; place-items: center; color: #e5e7eb; font-size: 14px; }
+#camera-placeholder[hidden] { display: none; }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 12px; }
+#time-slider { flex: 1 1 260px; min-width: 150px; accent-color: #2563eb; }
+#current-time { font-weight: 700; color: #1f2937; }
+.summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0 0 14px; }
+.summary div { padding: 9px 12px; background: #eef2f7; border-radius: 5px; color: #374151; }
+.summary strong { display: block; margin-top: 2px; color: #111827; font-size: 18px; }
+.network-svg, .timeline-svg, .legend-svg { display: block; max-width: 100%; height: auto; background: white; border: 1px solid #d1d5db; border-radius: 6px; }
+.legend-svg { margin-top: 10px; }
+.network-link { stroke-linecap: round; cursor: pointer; }
+.network-node { cursor: grab; }
+.network-node:active { cursor: grabbing; }
+.company-label { font-size: 11px; font-weight: 600; fill: #1f2937; pointer-events: none; paint-order: stroke; stroke: white; stroke-width: 3px; stroke-linejoin: round; }
+.region-guide { font-size: 13px; font-weight: 700; fill: #6b7280; text-anchor: middle; }
+.axis text, .legend-label, .timeline-label { font-size: 11px; fill: #374151; }
+.legend-title, .timeline-title { font-size: 12px; font-weight: 700; fill: #1f2937; }
+.grid line { stroke: #e5e7eb; }
+.grid path { display: none; }
+.time-guide { stroke: #dc2626; stroke-width: 2; stroke-dasharray: 5 4; pointer-events: none; }
+.timeline-overlay { fill: transparent; cursor: crosshair; }
+.tooltip { opacity: 0; z-index: 5; max-width: 280px; }
+.error { color: #b91c1c; }
+@media (max-width: 650px) {
+    .interaction-grid, .summary { grid-template-columns: 1fr; }
+    .sensor-card, .viz-panel, .interaction-panel { padding: 12px; }
+    #current-time { flex-basis: 100%; }
+}
